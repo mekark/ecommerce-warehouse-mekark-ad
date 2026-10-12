@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { getPageSourceUrl } from "@/lib/sourceUrl";
 
 const FORM_ENDPOINT = "/api/enquiry-form";
-const THANK_YOU_URL = "https://warehouse.mekark.com/thank-you";
+const THANK_YOU_URL = "/thank-you";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const INDUSTRIES = [
