@@ -16,6 +16,8 @@ const DESIGN_WIDTH = 1867;
 type Step = {
   number: string;
   title: string;
+  /** Phone layout uses a different title in Figma */
+  mobileTitle?: string;
   description: string;
   icon: LucideIcon;
   /** Absolute left offset / width of the column in the Figma frame */
@@ -27,8 +29,9 @@ type Step = {
 const STEPS: Step[] = [
   {
     number: "01",
-    title: "Site & Project Feasibility",
-    description: "Geotechnical, regulatory, and budget checks.",
+    title: "Site & Feasibility Study",
+    mobileTitle: "Site & Project Feasibility",
+    description: "Soil testing, approvals, truck access, and budget checks.",
     icon: ClipboardCheck,
     left: -1,
     width: 270,
@@ -36,8 +39,8 @@ const STEPS: Step[] = [
   },
   {
     number: "02",
-    title: "Design & Engineering",
-    description: "In-house engineering and planning.",
+    title: "Layout & Engineering",
+    description: "In-house structural design planned around receiving, racking, packing and dispatch flow.",
     icon: DraftingCompass,
     left: 298,
     width: 272,
@@ -46,7 +49,7 @@ const STEPS: Step[] = [
   {
     number: "03",
     title: "Factory Fabrication",
-    description: "Precision-made columns, rafters, and purlins.",
+    description: "Precision-made columns, rafters, and purlins, made in-house.",
     icon: Factory,
     left: 598,
     width: 268,
@@ -55,7 +58,7 @@ const STEPS: Step[] = [
   {
     number: "04",
     title: "On-Site Erection",
-    description: "On-site structural assembly",
+    description: "Quick structural assembly with minimal site disruption.",
     icon: HardHat,
     left: 894,
     width: 271,
@@ -63,8 +66,9 @@ const STEPS: Step[] = [
   },
   {
     number: "05",
-    title: "Quality Validation",
-    description: "Inspection, installation & compliance checks",
+    title: "Quality Checks",
+    mobileTitle: "Quality Validation",
+    description: "Inspection, installation & compliance checks.",
     icon: ShieldCheck,
     left: 1193,
     width: 271,
@@ -72,8 +76,8 @@ const STEPS: Step[] = [
   },
   {
     number: "06",
-    title: "Handover & After-Sales",
-    description: "Snag clearance, documentation, and support.",
+    title: "Handover & Support",
+    description: "Snag clearance, documentation, and after-sales support.",
     icon: Truck,
     left: 1492,
     width: 270,
@@ -92,12 +96,12 @@ function StepIcon({ icon: Icon }: { icon: LucideIcon }) {
 function Heading() {
   return (
     <div className="flex flex-col gap-[10px]">
-      <h2 className="text-[34px] leading-[1.15] font-bold text-[#0F172A] min-[1024px]:w-[1219px] min-[1024px]:text-[66px] min-[1024px]:leading-[73.333px]">
+      <h2 className="text-[34px] leading-[1.15] font-bold text-[#0F172A] min-[1024px]:w-[1597px] min-[1024px]:text-[66px] min-[1024px]:leading-[73.333px]">
         Our Turnkey{" "}
-        <span className="text-[#ED1D23]">Warehouse Construction</span>
+        <span className="text-[#ED1D23]">Ecommerce Warehouse Construction</span>
       </h2>
       <p className="text-[18px] leading-[20px] font-normal text-[#64748B] min-[1024px]:text-[24px]">
-        As a warehouse construction company, we follow a proven 6-step process to ensure on-time delivery.
+        As a fulfilment centre construction company, we follow a proven 6-step process to ensure on-time delivery.
       </p>
     </div>
   );
@@ -182,12 +186,16 @@ export default function ProcessSection() {
       <div className="px-5 pt-8 pb-10 sm:hidden">
         <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-[24px]">
           <div className="flex w-full max-w-[324px] flex-col gap-[12px]">
-            <h2 className="text-[27px] leading-[34px] font-bold text-[#0F172A]">
+            <h2 className="text-[26px] leading-[34px] font-bold text-[#0F172A]">
               Our Turnkey{" "}
-              <span className="text-[#ED1D23]">Warehouse Construction</span>
+              <span className="text-[#ED1D23]">
+                Ecommerce
+                <br />
+                Warehouse Construction
+              </span>
             </h2>
             <p className="text-[14px] leading-[20px] font-normal text-[#64748B]">
-              As a warehouse construction company, we follow a proven 6-step process to ensure on-time delivery.
+              As a fulfilment centre construction company, we follow a proven 6-step process to ensure on-time delivery.
             </p>
           </div>
 
@@ -207,8 +215,25 @@ export default function ProcessSection() {
                   className="relative flex items-center gap-[17px]"
                 >
                   <span
-                    className={`${spaceGrotesk.className} relative flex size-[33px] shrink-0 items-center justify-center rounded-full border border-dashed border-[#BCBCBC] bg-[#F9F6F7] text-[14px] leading-[normal] font-bold text-[#080808]`}
+                    className={`${spaceGrotesk.className} relative flex size-[33px] shrink-0 items-center justify-center rounded-full bg-[#F9F6F7] text-[14px] leading-[normal] font-bold text-[#080808]`}
                   >
+                    {/* dashed ring: 8 dashes around the circle */}
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 33 33"
+                      className="absolute inset-0 size-full"
+                    >
+                      <circle
+                        cx="16.5"
+                        cy="16.5"
+                        r="16"
+                        fill="none"
+                        stroke="#BCBCBC"
+                        strokeWidth="1"
+                        pathLength="100"
+                        strokeDasharray="7.5 5"
+                      />
+                    </svg>
                     {step.number}
                   </span>
 
@@ -220,7 +245,7 @@ export default function ProcessSection() {
                     />
                     <div className="flex min-w-0 flex-col gap-px">
                       <p className="text-[16px] leading-[normal] font-semibold text-[#0F172A]">
-                        {step.title}
+                        {step.mobileTitle ?? step.title}
                       </p>
                       <p className="text-[12px] leading-[20px] font-normal text-[#64748B]">
                         {step.description}

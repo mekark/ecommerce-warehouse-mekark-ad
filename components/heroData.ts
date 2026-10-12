@@ -9,3 +9,13 @@ export const HIGHLIGHTS = [
   "In-House PEB Manufacturing",
   "Single-Point Contract Accountability",
 ];
+
+// Listed row by row in a two-column grid
+export const FOCUS_AREAS = [
+  "Engineering, Electronics, Electrical & Semiconductor.",
+  "Retail, Cold Storage, E-commerce, Distributions.",
+  "Automotive, Electrical Vehicle, Machinery & Heavy Manufacturing.",
+  "Textile, Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
+  "Apparel, Leather, Food Processing, Beverage, FMCG.",
+];

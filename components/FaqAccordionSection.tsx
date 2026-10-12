@@ -3,99 +3,19 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import { useState } from "react";
-import { FAQ_GROUPS } from "@/components/faqData";
+import { FAQ_GROUPS, FAQ_ITEMS } from "@/components/faqData";
 import ScaledCanvas from "@/components/ScaledCanvas";
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
 
-// Tab paddings come straight from the Figma frame (each pill hugs its content)
-// Mobile pills are smaller; paddings again come from the Figma frame
-const MOBILE_TAB_PADDING = ["px-[10px]", "pl-[9px] pr-[8px]"];
-
-const TAB_PADDING = ["px-[32px]", "pl-[28px] pr-[27px]"];
-
-type Group = (typeof FAQ_GROUPS)[number];
-
-function Tabs({
-  activeIndex,
-  onSelect,
-}: {
-  activeIndex: number;
-  onSelect: (index: number) => void;
-}) {
-  return (
-    <div className="flex flex-wrap items-start gap-3 min-[1024px]:gap-[24px]">
-      {FAQ_GROUPS.map((group, index) => {
-        const Icon = group.icon;
-        const active = index === activeIndex;
-
-        return (
-          <button
-            key={group.title}
-            type="button"
-            onClick={() => onSelect(index)}
-            aria-pressed={active}
-            className={`flex items-center justify-center gap-[8px] rounded-[50px] py-[15px] text-[14px] whitespace-nowrap ${
-              TAB_PADDING[index]
-            } ${
-              active
-                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
-                : "bg-[#EBEBEB] font-medium text-[#929292]"
-            }`}
-          >
-            <Icon size={24} strokeWidth={2} />
-            <span className="leading-[normal]">{group.title}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-function MobileTabs({
-  activeIndex,
-  onSelect,
-}: {
-  activeIndex: number;
-  onSelect: (index: number) => void;
-}) {
-  return (
-    <div className="-mr-[20px] flex gap-[10px] overflow-x-auto pr-[20px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {FAQ_GROUPS.map((group, index) => {
-        const Icon = group.icon;
-        const active = index === activeIndex;
-
-        return (
-          <button
-            key={group.title}
-            type="button"
-            onClick={() => onSelect(index)}
-            aria-pressed={active}
-            className={`flex shrink-0 items-center justify-center gap-[8px] rounded-[50px] py-[11px] text-[10px] whitespace-nowrap ${
-              MOBILE_TAB_PADDING[index]
-            } ${
-              active
-                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
-                : "bg-[#EBEBEB] font-medium text-[#929292]"
-            }`}
-          >
-            <Icon size={14} strokeWidth={2} />
-            <span className="leading-[normal]">{group.title}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function Items({
-  group,
+  items,
   openIndex,
   onToggle,
   fixedLayout,
 }: {
-  group: Group;
+  items: typeof FAQ_ITEMS;
   openIndex: number | null;
   onToggle: (index: number) => void;
   /** Desktop: replicate the fixed Figma widths. Otherwise flow naturally. */
@@ -103,7 +23,8 @@ function Items({
 }) {
   return (
     <div className={`flex flex-col items-start ${fixedLayout ? "" : "w-full"}`}>
-      {group.items.map((item, index) => {
+      {items.map((item, position) => {
+        const index = FAQ_ITEMS.indexOf(item);
         const open = index === openIndex;
 
         return (
@@ -111,7 +32,7 @@ function Items({
             key={item.question}
             className={`flex flex-col items-start border-b-[1.333px] border-solid border-[#E2E2E2] ${
               fixedLayout ? "w-[911.556px]" : "w-full"
-            } ${index === 0 && (open || !fixedLayout)
+            } ${position === 0 && (open || !fixedLayout)
                 ? "pt-0"
                 : fixedLayout
                   ? "pt-[32px]"
@@ -176,6 +97,69 @@ function Items({
   );
 }
 
+function Tabs({
+  active,
+  onChange,
+  compact = false,
+}: {
+  active: string;
+  onChange: (group: string) => void;
+  /** Phone layout: smaller pills that wrap their label onto two lines */
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-start ${
+        compact ? "gap-[10px]" : "flex-wrap gap-3 sm:gap-6"
+      }`}
+    >
+      {FAQ_GROUPS.map(({ name, label, icon }, tabIndex) => {
+        const selected = name === active;
+
+        return (
+          <button
+            key={name}
+            type="button"
+            onClick={() => onChange(name)}
+            aria-pressed={selected}
+            className={`flex items-center justify-center gap-[8px] rounded-[50px] leading-[normal] ${
+              compact
+                ? "px-[10px] py-[11px] text-left text-[10px]"
+                : "px-[20px] py-[12px] text-[14px] whitespace-nowrap sm:px-[28px] sm:py-[15px]"
+            } ${
+              selected
+                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
+                : "bg-[#EBEBEB] font-medium text-[#929292]"
+            }`}
+          >
+            <span
+              aria-hidden
+              className={`shrink-0 bg-current ${compact ? "size-[14px]" : "size-[24px]"}`}
+              style={{
+                maskImage: `url(${icon})`,
+                WebkitMaskImage: `url(${icon})`,
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+                maskPosition: "center",
+                WebkitMaskPosition: "center",
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+              }}
+            />
+            {compact ? (
+              <span className={tabIndex === 0 ? "w-[149px]" : "w-[114px]"}>
+                {label}
+              </span>
+            ) : (
+              label
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function Heading() {
   return (
     <div className="flex flex-col items-start gap-[6px]">
@@ -193,15 +177,15 @@ function Heading() {
 }
 
 export default function FaqAccordionSection() {
-  const [activeTab, setActiveTab] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const group = FAQ_GROUPS[activeTab];
+  const [activeGroup, setActiveGroup] = useState<string>(FAQ_GROUPS[0].name);
+  const visibleItems = FAQ_ITEMS.filter((item) => item.group === activeGroup);
 
-  const selectTab = (index: number) => {
-    setActiveTab(index);
-    // The first tab opens its first question; the second tab starts fully closed
-    setOpenIndex(index === 0 ? 0 : null);
+  // Switching tabs opens that tab's first question
+  const changeGroup = (group: string) => {
+    setActiveGroup(group);
+    setOpenIndex(FAQ_ITEMS.findIndex((item) => item.group === group));
   };
 
   const toggleItem = (index: number) =>
@@ -214,7 +198,7 @@ export default function FaqAccordionSection() {
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
           <div
             className="relative w-[1920px] overflow-hidden bg-white"
-            style={{ height: DESIGN_HEIGHT }}
+            style={{ minHeight: DESIGN_HEIGHT }}
           >
             {/* question-mark artwork */}
             <div className="absolute bottom-[132px] left-[-240px] h-[1002px] w-[1098px] overflow-hidden">
@@ -229,14 +213,14 @@ export default function FaqAccordionSection() {
             </div>
 
             {/* faq list */}
-            <div className="absolute top-[81px] left-[901px] flex flex-col items-start gap-[40px]">
+            <div className="relative ml-[901px] flex flex-col items-start gap-[40px] pt-[81px] pb-[60px]">
               <div className="flex flex-col items-start gap-[24px]">
                 <Heading />
-                <Tabs activeIndex={activeTab} onSelect={selectTab} />
+                <Tabs active={activeGroup} onChange={changeGroup} />
               </div>
 
               <Items
-                group={group}
+                items={visibleItems}
                 openIndex={openIndex}
                 onToggle={toggleItem}
                 fixedLayout
@@ -260,9 +244,7 @@ export default function FaqAccordionSection() {
               Questions
             </h2>
 
-            <div className="w-full min-w-0">
-              <MobileTabs activeIndex={activeTab} onSelect={selectTab} />
-            </div>
+            <Tabs compact active={activeGroup} onChange={changeGroup} />
           </div>
 
           <div className="relative aspect-[350/327] w-full overflow-hidden">
@@ -278,7 +260,8 @@ export default function FaqAccordionSection() {
         </div>
 
         <div className="flex w-full flex-col items-end gap-[12px]">
-          {group.items.map((item, index) => {
+          {visibleItems.map((item) => {
+            const index = FAQ_ITEMS.indexOf(item);
             const open = index === openIndex;
 
             return (
@@ -294,13 +277,14 @@ export default function FaqAccordionSection() {
                     className="flex w-full items-center gap-[12px] text-left"
                   >
                     <span
-                      className={`min-w-0 flex-1 text-[16px] leading-[24px] ${
+                      className={`flex min-w-0 flex-1 text-[16px] leading-[24px] ${
                         open
                           ? "font-semibold text-[#C4161C]"
                           : "font-medium text-[#080808]"
                       }`}
                     >
-                      {index + 1}. {item.question}
+                      <span className="w-[24px] shrink-0">{index + 1}.</span>
+                      <span className="min-w-0">{item.question}</span>
                     </span>
 
                     <span
@@ -324,7 +308,7 @@ export default function FaqAccordionSection() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="w-full pt-[10px] text-[14px] leading-[20px] font-medium text-[#5A5A5A]">
+                      <p className="w-full pt-[10px] pl-[24px] text-[14px] leading-[20px] font-normal text-[#4B4D53]">
                         {item.answer}
                       </p>
                     </div>
@@ -353,11 +337,11 @@ export default function FaqAccordionSection() {
         <div className="flex flex-col gap-8 px-5 pt-8 pb-12 sm:px-10 sm:pb-16">
           <div className="flex flex-col gap-6">
             <Heading />
-            <Tabs activeIndex={activeTab} onSelect={selectTab} />
+            <Tabs active={activeGroup} onChange={changeGroup} />
           </div>
 
           <Items
-            group={group}
+            items={visibleItems}
             openIndex={openIndex}
             onToggle={toggleItem}
             fixedLayout={false}

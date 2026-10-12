@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // A stray lockfile in a parent folder makes Next guess the wrong root
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     // Serve AVIF where supported (smaller than WebP), WebP otherwise
     formats: ["image/avif", "image/webp"],

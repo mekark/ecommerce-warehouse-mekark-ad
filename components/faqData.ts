@@ -1,72 +1,67 @@
-import { ClipboardCheck, Wrench } from "lucide-react";
-
 export const FAQ_GROUPS = [
   {
-    title: "Services & Capabilities",
-    icon: Wrench,
-    items: [
-      {
-        question:
-          "What is a pre-engineered warehouse building and how does it work?",
-        answer:
-          "A pre-engineered warehouse building is a steel structure designed and fabricated off-site, then assembled on-site with high precision, reducing construction time and material wastage. It suits large warehouse construction, logistics warehouse construction and logistics facility construction.",
-      },
-      {
-        question: "Do you provide turnkey EPC solutions for warehouses?",
-        answer:
-          "Yes. Turnkey warehouse construction consolidates design, fabrication, civil work, and project management under one contract, with single-point accountability from planning to handover.",
-      },
-      {
-        question:
-          "Is Mekark a cold storage construction company that can design and erect cold storage steel structures?",
-        answer:
-          "Yes. We build cold storage and temperature-controlled warehouses, including inspecting the building before insulation and refrigeration work begins.",
-      },
-      {
-        question:
-          "Can existing industrial warehouses be reconfigured or expanded instead of rebuilt?",
-        answer:
-          "In many cases, yes. After a technical site assessment of the existing structure, we advise whether it can be extended or reconfigured, or whether a rebuild is the better option.",
-      },
-      {
-        question: "What industries does Mekark service?",
-        answer:
-          "We deliver projects for manufacturing, logistics, FMCG, automotive, e-commerce, 3PL and cold chain clients across India.",
-      },
-      {
-        question:
-          "Do you handle both warehouse and shed construction under PEB technology?",
-        answer:
-          "Yes. As an industrial shed construction company and factory shed construction company, we deliver both warehouse shed construction and full-scale warehouse facilities using the same PEB manufacturing process — one technology, multiple building types.",
-      },
-    ],
+    name: "Ecommerce Warehouse & Fulfilment Centre Construction",
+    label: "Warehouse & Fulfilment Centre Construction",
+    icon: "/Images/faq/tab-warehouse.svg",
   },
   {
-    title: "Process, Cost & Compliance",
-    icon: ClipboardCheck,
-    items: [
-      {
-        question: "How long does it take to construct a pre-engineered warehouse?",
-        answer:
-          "With fast track warehouse construction, most projects are delivered in 150 days — compared to the industry-standard 9–12 months for conventional builds — because manufacturing happens in-house in parallel with site preparation.",
-      },
-      {
-        question:
-          "How much does it cost to build a factory warehouse shed in India?",
-        answer:
-          "Warehouse construction cost per sq ft varies based on span width, load-bearing requirements, flooring specification, and site conditions — typically ranging across a wide band depending on whether it's a basic storage shed or a high-spec manufacturing facility. We provide a detailed, itemized quote after a technical site assessment rather than a flat number that changes later.",
-      },
-      {
-        question: "Is the construction of the warehouse at Mekark IS compliant?",
-        answer:
-          "Yes. Our structures are designed to the applicable Indian Standards, and before handover we inspect the structure, RCC quality and compliance with statutory requirements.",
-      },
-      {
-        question:
-          "What are the advantages of choosing a turnkey PEB warehouse contractor?",
-        answer:
-          "Turnkey warehouse construction consolidates design, fabrication, civil work, and project management under one contract — eliminating the coordination delays and cost overruns common when multiple vendors handle different phases separately.",
-      },
-    ],
+    name: "Planning, Delivery & Project Support",
+    label: "Planning, Delivery & Project Support",
+    icon: "/Images/faq/tab-clipboard.svg",
+  },
+];
+
+export const FAQ_ITEMS = [
+  {
+    group: "Ecommerce Warehouse & Fulfilment Centre Construction",
+    question: "How is an ecommerce warehouse different from a traditional warehouse?",
+    answer:
+      "The ecommerce warehouse is designed based on speed and efficiency. It should be planned for high SKUs, pick-pack-ship processes, returns handling and fast dock turnarounds, while a storage warehouse will not require this.",
+  },
+  {
+    group: "Ecommerce Warehouse & Fulfilment Centre Construction",
+    question: "What layout does an ecommerce fulfilment centre need?",
+    answer:
+      "The layout depends on daily order volume, SKU count and returns handling. For ecommerce fulfilment centre construction, we plan receiving, storage, packing and dispatch zones at the design stage so goods move in one clean flow.",
+  },
+  {
+    group: "Ecommerce Warehouse & Fulfilment Centre Construction",
+    question:
+      "How does ecommerce logistics warehouse construction help deliver orders faster?",
+    answer:
+      "Ecommerce logistics warehouse construction plans dock positions, truck access and internal movement around your dispatch targets. Fewer bottlenecks between racking, packing and loading mean faster order turnaround.",
+  },
+  {
+    group: "Ecommerce Warehouse & Fulfilment Centre Construction",
+    question: "Do you build for both D2C brands and marketplace sellers?",
+    answer:
+      "Yes. As an ecommerce fulfilment centre construction company, we handle fulfillment center construction company for D2C brands, marketplace sellers, retailers and 3PL operators, with the structure sized to each operator's order profile.",
+  },
+  {
+    group: "Planning, Delivery & Project Support",
+    question:
+      "How should we plan an ecommerce warehouse for seasonal peaks?",
+    answer:
+      "Allow for additional bay capacity, dock doors, and future expansion capacity during the design phase. We analyse your high season requirements in order to build a fulfilment warehouse that will be able to cope with peaks during the sales period.",
+  },
+  {
+    group: "Planning, Delivery & Project Support",
+    question: "What should I look for in an ecommerce warehouse contractor?",
+    answer:
+      "Search for single-point accountability, in-house structural engineering and a proven track record. As an ecommerce warehouse contractor, Mekark offers all three, backed by 200+ completed industrial and commercial projects.",
+  },
+  {
+    group: "Planning, Delivery & Project Support",
+    question:
+      "Will you take up ecommerce distribution center construction for regional and last-mile networks?",
+    answer:
+      "Yes. We deliver ecommerce distribution center construction for regional and last-mile distribution through our in-house design and fabrication process.",
+  },
+  {
+    group: "Planning, Delivery & Project Support",
+    question:
+      "Is it possible to construct an ecommerce warehouse with multiple stories in places where there is limited space?",
+    answer:
+      "Yes. In the case of urban or space-challenged areas, we provide you with an ecommerce warehouse construction that has multiple stories.",
   },
 ];

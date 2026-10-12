@@ -8,34 +8,34 @@ const ROW_WIDTHS = [700, 672, 645, 645, 672, 700];
 
 const ITEMS = [
   {
-    title: "Turnkey Warehouse Building Construction",
+    title: "Turnkey Fulfilment Warehouse Construction",
     description:
-      "We take single-point accountability from design to handover. Engineering, procurement and RCC construction are under one roof, so your logistics warehouse, distribution centre, or fulfillment center stays on schedule and on budget.",
+      "One team takes accountability from design to handover. Engineering, procurement and RCC construction sit under one roof, keeping your ecommerce warehouse, fulfilment centre, or distribution centre on schedule and within budget.",
   },
   {
-    title: "In-House Structural Engineers",
+    title: "In-House Structural Engineering",
     description:
-      "As an industrial warehouse contractor, we use BIM-based structural analysis to design every RCC structure accurately before work begins. This makes us a dependable warehouse building contractor for large warehouse construction, with fewer on-site design changes.",
+      "As an ecommerce warehouse contractor, our engineers run BIM-based structural analysis for every RCC structure before work begins. That makes us a dependable fulfilment centre construction company for large-scale ecommerce logistics warehouse construction, with fewer on-site design changes.",
   },
   {
-    title: "Foundation Design for Your Loads",
+    title: "Foundations Built for Your Loads",
     description:
-      "We customise your foundation design for your racking systems, material handling equipment and floor loads. As a warehouse construction contractor, we size footings, pedestals and plinth beams for safe load transfer.",
+      "We design foundations around your racking, sortation and material-handling equipment, and floor loads. As an ecommerce warehouse contractor, we size footings, pedestals and plinth beams for safe load transfer.",
   },
   {
-    title: "Established Credentials",
+    title: "Proven Track Record",
     description:
-      "We have completed 200+ industrial and commercial RCC construction projects and earned a high customer rating. We measure our reliability by repeat orders from logistics operators, 3PL companies, e-commerce brands and cold chain businesses.",
+      "We have completed 200+ industrial and commercial RCC construction projects with a high customer rating. Repeat orders from ecommerce brands, 3PL companies and logistics operators, across ecommerce distribution centre construction and ecommerce fulfilment center construction, show our reliability.",
   },
   {
-    title: "Safe Construction",
+    title: "Safety & Cost Clarity",
     description:
-      "We use modular formwork, routine site safety checks and clear, itemised pricing. This keeps our warehouse construction sites safe, organised and free of cost surprises.",
+      "Modular formwork, routine site safety checks and clear, itemised pricing keep our ecommerce warehouse construction sites safe, organised and free of cost surprises.",
   },
   {
-    title: "Pre-Handover Inspection",
+    title: "Inspection Before Handover",
     description:
-      "Before handover, we inspect the structure, RCC quality and compliance with statutory requirements. For cold storage and temperature-controlled warehouses, this includes checking the building before insulation and refrigeration work.",
+      "We inspect the structure, RCC quality and statutory compliance before handover. For ecommerce fulfilment centres with temperature-controlled zones, we also check the building before insulation and refrigeration work.",
   },
 ];
 
@@ -69,14 +69,14 @@ export default function WhyMekarkAccordion() {
                 <span className="w-[22px] shrink-0 text-[24px] leading-[29.867px] font-bold">
                   {index + 1}.
                 </span>
-                <span className="flex-1 text-[24px] leading-[29.867px] font-bold">
+                <span className="max-w-[492px] flex-1 text-[24px] leading-[29.867px] font-bold">
                   {item.title}
                 </span>
                 <ChevronDown
                   size={30}
                   strokeWidth={1.5}
                   aria-hidden
-                  className={`shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                  className={`ml-auto shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                 />
               </span>
               <span
@@ -125,9 +125,9 @@ export function WhyMekarkMobileAccordion() {
               className="flex w-full cursor-pointer flex-col text-left text-white"
             >
               <span className="flex w-full items-center gap-[12px]">
-                <span className="min-w-0 flex-1 text-[16px] leading-[18px] font-bold">
-                  <span className="inline-block w-[24px]">{index + 1}.</span>
-                  {item.title}
+                <span className="flex min-w-0 flex-1 text-[16px] leading-[18px] font-bold">
+                  <span className="w-[24px] shrink-0">{index + 1}.</span>
+                  <span className="min-w-0">{item.title}</span>
                 </span>
                 <ChevronDown
                   size={26}

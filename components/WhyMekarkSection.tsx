@@ -8,104 +8,6 @@ import WhyMekarkAccordion, {
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 866;
 
-type Point = {
-  value: string;
-  text: string;
-  /** Position / size of the row inside the 540x407 "Points" box in Figma */
-  left: number;
-  top: number;
-  width: number;
-  /** Gap between arrow and value */
-  arrowGap: number;
-  /** Fixed value column width (undefined = hug content) */
-  valueWidth?: number;
-  textSize: number;
-  /** Fixed text width (undefined = fill remaining space) */
-  textWidth?: number;
-  alignEnd?: boolean;
-  centered?: boolean;
-};
-
-const POINTS: Point[] = [
-  {
-    value: "5X",
-    text: "Faster Project Planning & Execution Speed",
-    left: 0,
-    top: 0,
-    width: 580,
-    arrowGap: 10,
-    valueWidth: 40,
-    textSize: 24,
-    alignEnd: true,
-    centered: true,
-  },
-  {
-    value: "100%",
-    text: "Turnkey EPC Project Responsibility",
-    left: 20.33,
-    top: 77,
-    width: 571,
-    arrowGap: 13,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
-  },
-  {
-    value: "200+",
-    text: "Industrial & Warehouse Projects Delivered",
-    left: 40.33,
-    top: 145,
-    width: 659,
-    arrowGap: 13,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
-  },
-  {
-    value: "90%",
-    text: "Quality & Safety Compliance Standards",
-    left: 40.33,
-    top: 214,
-    width: 609,
-    arrowGap: 10,
-    textSize: 26,
-    centered: true,
-  },
-  {
-    value: "40k +",
-    text: "PEB & Structural Steel Expertise",
-    left: 20.33,
-    top: 283,
-    width: 531,
-    arrowGap: 10,
-    valueWidth: 81.333,
-    textSize: 26,
-    centered: true,
-  },
-  {
-    value: "18+ ",
-    text: "Years Industrial Construction Excellence",
-    left: 0.33,
-    top: 351,
-    width: 608,
-    arrowGap: 10,
-    textSize: 26,
-    textWidth: 432,
-  },
-];
-
-function Arrow() {
-  return (
-    <Image
-      src="/Images/why/arrow.svg"
-      alt=""
-      width={17}
-      height={27}
-      className="h-[27px] w-[17px] shrink-0"
-    />
-  );
-}
-
 function Heading() {
   return (
     <div className="flex flex-col gap-[22px]">
@@ -114,8 +16,8 @@ function Heading() {
         <br />
         Choose Mekark
       </h2>
-      <p className="text-[16px] leading-[28px] font-normal text-[#424242] min-[1024px]:text-[20px] min-[1024px]:leading-[normal]">
-        India’s Leading Industrial Warehouse Construction
+      <p className="text-[16px] leading-[28px] font-normal text-[#424242] min-[1024px]:text-[21.333px] min-[1024px]:leading-[28px]">
+        India’s Leading Ecommerce Warehouse Construction
       </p>
     </div>
   );
@@ -209,7 +111,7 @@ export default function   WhyMekarkSection() {
               Choose Mekark
             </h2>
             <p className="text-[12px] leading-[19px] font-normal text-[#424242]">
-              India’s Leading Industrial Warehouse Construction
+              India’s Leading Ecommerce Warehouse Construction
             </p>
           </div>
 
@@ -234,25 +136,12 @@ export default function   WhyMekarkSection() {
             Why Top Industries Choose Mekark
           </h2>
           <p className="mt-3 text-[16px] leading-[28px] font-normal text-white/80">
-            India’s Leading Industrial Warehouse Construction
+            India’s Leading Ecommerce Warehouse Construction
           </p>
 
-          <ul className="mt-8 flex flex-col">
-            {POINTS.map((point) => (
-              <li
-                key={point.value}
-                className="flex items-center gap-4 border-b-[1.333px] border-solid border-white/30 py-4"
-              >
-                <Arrow />
-                <span className="min-w-[72px] text-[24px] leading-[28px] font-semibold whitespace-nowrap text-[#080808] sm:text-[32px]">
-                  {point.value}
-                </span>
-                <span className="text-[16px] leading-[24px] font-bold text-white sm:text-[22px]">
-                  {point.text}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8">
+            <WhyMekarkMobileAccordion />
+          </div>
         </div>
       </div>
     </section>

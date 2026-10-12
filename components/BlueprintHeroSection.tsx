@@ -5,7 +5,7 @@ import HeroBlueprintForm from "@/components/HeroBlueprintForm";
 import ScaledCanvas from "@/components/ScaledCanvas";
 import BlueprintHeroMobile from "@/components/BlueprintHeroMobile";
 import {
-  HIGHLIGHTS,
+  FOCUS_AREAS,
   PHONE_NUMBER,
   WHATSAPP_MESSAGE,
   WHATSAPP_NUMBER,
@@ -27,7 +27,8 @@ const CLIENT_LOGOS = [
   { name: "NS Instruments", src: "/Images/hero/clients/nsi.webp", scale: 1 },
   { name: "MRF", src: "/Images/hero/clients/mrf.webp", scale: 1 },
   { name: "L&T", src: "/Images/hero/clients/lt.webp", scale: 1 },
-  { name: "Caterpillar", src: "/Images/hero/clients/cat.webp", scale: 1.2 },
+  { name: "Sanmar", src: "/Images/hero/clients/sanmar1.webp", scale: 1 },
+  { name: "Sanmar Chemicals", src: "/Images/hero/clients/sanmar2.webp", scale: 1 },
   { name: "LA Freightlift", src: "/Images/hero/clients/laf.webp", scale: 1.2 },
   { name: "Komatsu", src: "/Images/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
@@ -69,13 +70,13 @@ export default function BlueprintHeroSection() {
             {/* BACKGROUND IMAGE */}
             <div className="absolute inset-0 min-[1024px]:inset-auto min-[1024px]:top-[-60px] min-[1024px]:right-[-8.3%] min-[1024px]:h-[1080px] min-[1024px]:w-[94.44%] overflow-hidden">
               <Image
-                src="/Images/hero/hero-bg-sharp.webp"
+                src="/Images/hero/hero-bg-cold.webp"
                 alt="Industrial warehouse interior"
                 fill
                 loading="lazy"
                 fetchPriority="high"
                 sizes="(min-width: 1024px) 95vw, 100vw"
-                className="object-cover brightness-[1.6] contrast-[1.05]"
+                className="object-cover"
               />
             </div>
 
@@ -109,55 +110,54 @@ export default function BlueprintHeroSection() {
                   <p
                     className={`${inter.className} text-[11px] leading-[20px] font-medium text-white sm:text-[14px] sm:whitespace-nowrap`}
                   >
-                    FROM DESIGN TO HANDOVER | ONE TEAM | 150 DAYS
+                    Ecommerce Fulfilment Warehouse Construction Company
                   </p>
                 </div>
 
                 {/* HEADING */}
-                <div className="flex w-full flex-col items-start gap-[10px]">
+                <div className="flex w-full flex-col items-start gap-[13px]">
                   <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
-                    Build Your PEB Industrial Warehouse in
+                    Build Warehouses. Design to Delivery
                   </h2>
-                  <div className="relative h-[56px] w-[178px] shrink-0 bg-[#ED1D23] sm:-mt-[3px] sm:h-[62px] sm:w-[239px]">
-                    <p className="absolute top-[29px] left-[5px] -translate-y-1/2 font-bold whitespace-nowrap text-white sm:top-[27px]">
-                      <span className="text-[40px] leading-[58px] sm:text-[54px]">
-                        {"150 Days "}
-                      </span>
-                      <span className="text-[24px] leading-[58px] font-medium text-[#ED1D23] sm:text-[38px]">
-                        not 9-12 months.
-                      </span>
-                    </p>
-                  </div>
+                  <p className="max-w-full bg-[#ED1D23] px-[5px] text-[24px] leading-[44px] font-bold text-white sm:max-[1023px]:text-[34px] sm:max-[1023px]:leading-[56px] min-[1024px]:text-[42px] min-[1024px]:leading-[56px]">
+                    Construction - Ecommerce Hub – 150 days
+                    <span className="align-top text-[20px] leading-[44px] font-normal sm:max-[1023px]:text-[26px] sm:max-[1023px]:leading-[56px] min-[1024px]:text-[30px] min-[1024px]:leading-[56px]">
+                      *
+                    </span>
+                  </p>
                 </div>
 
                 {/* DESCRIPTION */}
-                <p className="w-full text-[16px] leading-[24px] font-semibold text-[#A9A9A9] sm:text-[20px] sm:leading-[26px]">
-                  From planning to handover, Mekark is a leading warehouse
-                  construction company specializing in PEB warehouse
-                  construction, steel warehouse construction, industrial
-                  warehouse construction, turnkey warehouse construction, and
-                  pre-engineered warehouse buildings across South India.
-                </p>
+                <div className="flex w-full flex-col gap-[16px]">
+                  <p className="w-full text-[16px] leading-[24px] font-normal text-[#A9A9A9] sm:text-[22px] sm:leading-[28px] min-[1024px]:whitespace-nowrap">
+                    <span className="font-bold text-[#ED1D23]">MEKARK</span>
+                    {" - Builds Every Structure You Want."}
+                    <br />
+                    {"All Ecommerce Hub Fulfilment Distribution Center Warehouse Constructions  – "}
+                    <span className="font-bold text-white">ALL INDIA</span>
+                  </p>
 
-                {/* HIGHLIGHTS */}
-                <div className="grid grid-cols-1 gap-x-[24px] gap-y-[20px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
-                  {HIGHLIGHTS.map((item) => (
-                    <div
-                      key={item}
-                      className="flex h-[19px] items-center gap-[8px]"
-                    >
-                      <Image
-                        src="/Images/hero/chevron.svg"
-                        alt=""
-                        width={24}
-                        height={24}
-                        className="size-[24px] shrink-0"
-                      />
-                      <p className="text-[14px] leading-[20px] font-normal whitespace-nowrap text-white/70 sm:text-[16px]">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
+                  <p className="w-full text-[16px] leading-[24px] font-bold text-[#F3F3F3] sm:text-[22px] sm:leading-[28px]">
+                    In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+                  </p>
+
+                  {/* FOCUS AREAS */}
+                  <div className="grid grid-cols-1 gap-x-[20px] gap-y-[16px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
+                    {FOCUS_AREAS.map((item) => (
+                      <div key={item} className="flex items-center gap-[8px]">
+                        <Image
+                          src="/Images/hero/dot.svg"
+                          alt=""
+                          width={8}
+                          height={8}
+                          className="size-[8px] shrink-0"
+                        />
+                        <p className="text-[14px] leading-[20px] font-normal text-[#F7F7F7] sm:text-[18px] min-[1024px]:whitespace-nowrap">
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* TRUSTED ACROSS INDIA */}
