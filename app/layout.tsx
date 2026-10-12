@@ -9,9 +9,9 @@ const GTM_LOAD_DELAY_MS = 5000;
 
 export const metadata: Metadata = {
   title:
-    "India's No.1 Warehouse Construction Company | PEB Warehouse Design & Build Experts",
+    "Turnkey ecommerce warehouse construction Company – ecommerce warehouse contractor",
   description:
-    "Mekark delivers turnkey warehouse construction, PEB warehouse construction, and industrial warehouse design & build solutions across India.",
+    "Leading Turnkey ecommerce Warehouse EPC & Turnkey ecommerce logistics warehouse Construction Company – ecommerce fulfilment center warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey ecommerce warehouse Contractor & Turnkey ecommerce fulfilment centre , distribution center warehouse construction Company",
   icons: {
     icon: "/Images/LogoMekark.webp",
     shortcut: "/Images/LogoMekark.webp",
