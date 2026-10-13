@@ -146,7 +146,8 @@ export default function ProjectsGallerySection() {
                 alt={tile.alt}
                 fill
                 quality={70}
-                sizes="(min-width: 640px) 1px, calc(100vw - 40px)"
+                // ~1x resolution on phones (58vw at 1.75 DPR -> 420w candidate)
+                sizes="(min-width: 640px) 1px, 58vw"
                 className="object-cover"
               />
             </div>
