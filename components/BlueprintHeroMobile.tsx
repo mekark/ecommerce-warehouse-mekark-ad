@@ -57,7 +57,8 @@ export default function BlueprintHeroMobile() {
           src="/Images/hero/m-bg.webp"
           alt=""
           fill
-          sizes="505px"
+          quality={60}
+          sizes="(min-width: 640px) 1px, 505px"
           className="object-cover"
         />
       </div>
@@ -67,7 +68,10 @@ export default function BlueprintHeroMobile() {
           src="/Images/hero/m-fade.webp"
           alt=""
           fill
-          sizes="1028px"
+          loading="eager"
+          fetchPriority="high"
+          quality={60}
+          sizes="(min-width: 640px) 1px, 1028px"
           className="object-cover"
         />
       </div>
