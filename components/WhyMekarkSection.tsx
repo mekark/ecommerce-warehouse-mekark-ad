@@ -98,7 +98,9 @@ export default function   WhyMekarkSection() {
               width={1868}
               height={842}
               quality={65}
-              sizes="(min-width: 640px) 1px, 617px"
+              // ~1x resolution on phones (350px at 1.75 DPR -> 640w candidate
+              // for the 617px-wide crop)
+              sizes="(min-width: 640px) 1px, 350px"
               className="absolute top-[-0.11%] left-[-0.07%] h-[106.22%] w-[96.72%] max-w-none"
             />
           </div>

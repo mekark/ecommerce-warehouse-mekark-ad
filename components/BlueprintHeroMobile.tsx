@@ -194,9 +194,10 @@ export default function BlueprintHeroMobile() {
             <p className="text-[14px] leading-[20px] font-semibold text-[#ED1D23] uppercase">
               Trusted Across India
             </p>
-            {/* One row always: tiles are 64px wide (Figma) but shrink on narrow phones,
-                and the gap tightens below 380px so all four logos still fit. */}
-            <div className="flex w-full flex-nowrap items-start gap-x-[18px] max-[379px]:gap-x-2">
+            {/* One row always: tiles are 64px wide (Figma) but shrink on narrow phones.
+                justify-between spreads them edge to edge (no empty space after the
+                last logo); the gap is the minimum spacing and tightens below 380px. */}
+            <div className="flex w-full flex-nowrap items-start justify-between gap-x-[20px] max-[379px]:gap-x-2.5">
               {LOGOS.map((logo) => (
                 <div
                   key={logo.name}
