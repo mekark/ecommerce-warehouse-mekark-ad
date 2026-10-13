@@ -145,7 +145,8 @@ export default function ProjectsGallerySection() {
                 src={tile.src}
                 alt={tile.alt}
                 fill
-                sizes="100vw"
+                quality={70}
+                sizes="(min-width: 640px) 1px, calc(100vw - 40px)"
                 className="object-cover"
               />
             </div>

@@ -113,8 +113,10 @@ export default function BlueprintHeroMobile() {
                 src="/Images/hero/hero-bg-cold.webp"
                 alt="Industrial warehouse interior"
                 fill
+                loading="eager"
                 fetchPriority="high"
-                sizes="100vw"
+                quality={70}
+                sizes="(min-width: 640px) 1px, 100vw"
                 className="object-cover object-bottom"
               />
               <div className="absolute inset-x-0 -top-px h-[105px] bg-[linear-gradient(175.242deg,#060606_21.88%,rgba(32,32,32,0.83)_53.892%,rgba(6,6,6,0)_89.049%)]" />
