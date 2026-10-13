@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import DeferredGoogleTagManager from "@/components/DeferredGoogleTagManager";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 import "./globals.css";
 
 const GTM_ID = "GTM-5SBMM86H";
-const GTM_LOAD_DELAY_MS = 5000;
 
 export const metadata: Metadata = {
   title:
@@ -33,39 +32,20 @@ export default function RootLayout({
             __html: `(function(){var d=document.documentElement;function u(){d.style.setProperty('--cw',d.clientWidth)}u();addEventListener('resize',u)})();`,
           }}
         />
-        {/* Google Tag Manager */}
-        <Script
-          id="google-tag-manager"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i,delay){
-                w[l]=w[l]||[];
-
-                // Load GTM ${GTM_LOAD_DELAY_MS / 1000}s after the page is ready
-                setTimeout(function(){
-                  w[l].push({
-                    'gtm.start': new Date().getTime(),
-                    event:'gtm.js'
-                  });
-
-                  var f=d.getElementsByTagName(s)[0],
-                      j=d.createElement(s),
-                      dl=l!='dataLayer'?'&l='+l:'';
-
-                  j.async=true;
-                  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-
-                  f.parentNode.insertBefore(j,f);
-                }, delay);
-              })(window,document,'script','dataLayer','${GTM_ID}',${GTM_LOAD_DELAY_MS});
-            `,
-          }}
-        />
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
 
         {children}
 
         <ScrollToTopButton />
+        <DeferredGoogleTagManager gtmId={GTM_ID} />
       </body>
     </html>
   );
