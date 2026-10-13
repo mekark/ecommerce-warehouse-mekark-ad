@@ -69,7 +69,7 @@ export default function WhyMekarkAccordion() {
                 <span className="w-[22px] shrink-0 text-[24px] leading-[29.867px] font-bold">
                   {index + 1}.
                 </span>
-                <span className="max-w-[492px] flex-1 text-[24px] leading-[29.867px] font-bold">
+                <span className="flex-1 whitespace-nowrap text-[24px] leading-[29.867px] font-bold">
                   {item.title}
                 </span>
                 <ChevronDown

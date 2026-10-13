@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {
-  INDUSTRIES,
   SQFT_OPTIONS,
   useBlueprintForm,
 } from "@/hooks/useBlueprintForm";
@@ -74,21 +73,25 @@ export default function HeroMobileForm() {
             {errorText(errors.name)}
           </div>
 
-          <input
-            type="text"
-            name="location"
-            aria-label="Project location"
-            placeholder="Enter Project Location"
-            value={values.location}
-            onChange={handleChange}
-            className={`${fieldBase} border-[#E2E2E2] px-[22px]`}
-          />
+          <div>
+            <input
+              type="text"
+              name="location"
+              aria-label="Project location"
+              placeholder="Enter Project Location"
+              value={values.location}
+              onChange={handleChange}
+              className={`${fieldBase} ${borderColor(errors.location)} px-[22px]`}
+            />
+            {errorText(errors.location)}
+          </div>
 
           <div>
             <input
               type="tel"
               name="phoneNumber"
-              maxLength={15}
+              maxLength={10}
+              inputMode="numeric"
               aria-label="Mobile number"
               placeholder="Mobile Number*"
               value={values.phoneNumber}
@@ -112,23 +115,15 @@ export default function HeroMobileForm() {
           </div>
 
           <div>
-            <div className="relative">
-              <select
-                name="industry"
-                aria-label="Industry type"
-                value={values.industry}
-                onChange={handleChange}
-                className={selectClass(errors.industry)}
-              >
-                <option value="">Select your Industry type</option>
-                {INDUSTRIES.map((industry) => (
-                  <option key={industry} value={industry}>
-                    {industry}
-                  </option>
-                ))}
-              </select>
-              {chevron}
-            </div>
+            <input
+              type="text"
+              name="industry"
+              aria-label="Industry type"
+              placeholder="Enter your Industry type"
+              value={values.industry}
+              onChange={handleChange}
+              className={`${fieldBase} ${borderColor(errors.industry)}`}
+            />
             {errorText(errors.industry)}
           </div>
 
@@ -153,15 +148,18 @@ export default function HeroMobileForm() {
             {errorText(errors.sqft)}
           </div>
 
-          <textarea
-            name="details"
-            rows={1}
-            aria-label="Requirement details"
-            placeholder="Enter Requirement Details"
-            value={values.details}
-            onChange={handleChange}
-            className={`${fieldBase} block h-[46px] resize-none border-[#E2E2E2] px-[22px]`}
-          />
+          <div>
+            <textarea
+              name="details"
+              rows={1}
+              aria-label="Requirement details"
+              placeholder="Enter Requirement Details*"
+              value={values.details}
+              onChange={handleChange}
+              className={`${fieldBase} ${borderColor(errors.details)} block h-[46px] resize-none px-[22px]`}
+            />
+            {errorText(errors.details)}
+          </div>
         </div>
 
         <div className="flex w-full flex-col items-center gap-[12px]">

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  INDUSTRIES,
   SQFT_OPTIONS,
   useBlueprintForm,
 } from "@/hooks/useBlueprintForm";
@@ -90,6 +89,7 @@ export default function HeroBlueprintForm() {
                 onChange={handleChange}
                 className={`${inputClass(errors.location)} rounded-[8.809px] pl-[23.101px] pr-[36.101px] tracking-[0.3303px]`}
               />
+              {errorText(errors.location)}
             </div>
           </div>
 
@@ -103,8 +103,9 @@ export default function HeroBlueprintForm() {
                 id="bh-phone"
                 type="tel"
                 name="phoneNumber"
-                maxLength={15}
-                placeholder="+91 98765 43210"
+                maxLength={10}
+                inputMode="numeric"
+                placeholder="98765 43210"
                 value={values.phoneNumber}
                 onChange={handleChange}
                 className={inputClass(errors.phoneNumber)}
@@ -135,20 +136,15 @@ export default function HeroBlueprintForm() {
               <label htmlFor="bh-industry" className={labelClass}>
                 Industry Type*
               </label>
-              <select
+              <input
                 id="bh-industry"
+                type="text"
                 name="industry"
+                placeholder="Enter your Industry type"
                 value={values.industry}
                 onChange={handleChange}
-                className={`${selectClass(errors.industry, !!values.industry)} rounded-[8.809px] tracking-normal`}
-              >
-                <option value="">Select your Industry type</option>
-                {INDUSTRIES.map((industry) => (
-                  <option key={industry} value={industry}>
-                    {industry}
-                  </option>
-                ))}
-              </select>
+                className={`${inputClass(errors.industry)} rounded-[8.809px] pl-[23.101px] pr-[36.101px] tracking-normal`}
+              />
               {errorText(errors.industry)}
             </div>
 
@@ -177,7 +173,7 @@ export default function HeroBlueprintForm() {
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
             <label htmlFor="bh-details" className={labelClass}>
-              Requirement Details
+              Requirement Details*
             </label>
             <textarea
               id="bh-details"
@@ -185,8 +181,9 @@ export default function HeroBlueprintForm() {
               placeholder="Enter Requirement Details"
               value={values.details}
               onChange={handleChange}
-              className={`${fieldBase} ${borderColor()} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
+              className={`${fieldBase} ${borderColor(errors.details)} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
             />
+            {errorText(errors.details)}
           </div>
         </div>
 

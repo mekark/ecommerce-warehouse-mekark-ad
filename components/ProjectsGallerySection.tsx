@@ -70,7 +70,7 @@ function Heading() {
         </h2>
       </div>
       <p className="text-[16px] leading-[26px] font-medium text-[#64748B] sm:text-[20px] min-[1024px]:text-[24px]! min-[1024px]:leading-[36px]! min-[1024px]:whitespace-nowrap">
-        Completed PEB structures across India .
+      Our Completed Projects Across India .
       </p>
     </div>
   );
@@ -131,7 +131,7 @@ export default function ProjectsGallerySection() {
             </h2>
           </div>
           <p className="w-[307px] max-w-full text-[14px] leading-[20px] font-medium text-[#64748B]">
-            Completed PEB structures across India .
+          Our Completed Projects Across India .
           </p>
         </div>
 
