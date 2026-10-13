@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     // Next 16 only serves allow-listed qualities (75 is the default)
     qualities: [60, 65, 70, 75],
+    // Next's defaults plus 480/560, so phone-width images get a candidate
+    // between 384w and 640w instead of jumping straight to 640/750
+    imageSizes: [32, 48, 64, 96, 128, 256, 384, 480, 560],
   },
   experimental: {
     // Inline the (small, Tailwind) stylesheet into the HTML so it no longer

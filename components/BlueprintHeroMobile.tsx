@@ -57,8 +57,13 @@ export default function BlueprintHeroMobile() {
           src="/Images/hero/m-bg.webp"
           alt=""
           fill
+          // This tall background is the mobile LCP element, so load it up front
+          loading="eager"
+          fetchPriority="high"
           quality={60}
-          sizes="(min-width: 640px) 1px, 505px"
+          // It sits under a dark overlay, so ~1x resolution is enough: 320px at
+          // 1.75 DPR resolves to the 560w candidate (see imageSizes in next.config)
+          sizes="(min-width: 640px) 1px, 320px"
           className="object-cover"
         />
       </div>
@@ -69,7 +74,6 @@ export default function BlueprintHeroMobile() {
           alt=""
           fill
           loading="eager"
-          fetchPriority="high"
           quality={60}
           sizes="(min-width: 640px) 1px, 1028px"
           className="object-cover"
