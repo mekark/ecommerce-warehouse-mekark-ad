@@ -55,8 +55,8 @@ export default function WhyMekarkAccordion() {
             style={{ width: ROW_WIDTHS[index] }}
             className={
               isLast
-                ? "min-h-[60px] py-[12px]"
-                : "min-h-[60px] border-b-[1.333px] border-solid border-[#E58282] pt-[12px] pb-[13.333px]"
+                ? "min-h-[60px] shrink-0 py-[12px]"
+                : "min-h-[60px] shrink-0 border-b-[1.333px] border-solid border-[#E58282] pt-[12px] pb-[13.333px]"
             }
           >
             <button

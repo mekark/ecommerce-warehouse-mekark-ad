@@ -47,7 +47,7 @@ export default function   WhyMekarkSection() {
 
             {/* red panel */}
             <div className="absolute top-0 left-[1004px] h-[701.333px] w-[916px] bg-[#E60F1A]" />
-            <div className="absolute top-[554.67px] left-[964px] h-[215px] w-[956px] bg-[#E60F1A]" />
+            <div className="absolute top-[554.67px] left-[964px] h-[200px] w-[956px] bg-[#E60F1A]" />
 
             {/* white fade over the top of the red panel */}
             <div className="absolute top-[-2.67px] left-[1004px] h-[398.667px] w-[916px]">
@@ -79,7 +79,8 @@ export default function   WhyMekarkSection() {
 
             {/* accordion */}
             <div className="absolute top-[265.67px] left-[1071px] w-[750px]">
-              <div className="flex justify-end">
+              {/* bottom edge lines up with the red panel's bottom (554.67 + 200 - 265.67); anything past it is clipped */}
+              <div className="flex h-[489px] justify-end overflow-hidden">
                 <WhyMekarkAccordion />
               </div>
             </div>
