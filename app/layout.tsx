@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description:
     "Leading Turnkey ecommerce Warehouse EPC & Turnkey ecommerce logistics warehouse Construction Company – ecommerce fulfilment center warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey ecommerce warehouse Contractor & Turnkey ecommerce fulfilment centre , distribution center warehouse construction Company",
   icons: {
-    icon: "/Images/LogoMekark.webp",
-    shortcut: "/Images/LogoMekark.webp",
+    icon: "/Mekark%20Favicon-32x32px.png",
+    shortcut: "/Mekark%20Favicon-32x32px.png",
     apple: "/Images/LogoMekark.webp",
   },
 };
