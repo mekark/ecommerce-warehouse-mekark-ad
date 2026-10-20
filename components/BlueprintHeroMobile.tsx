@@ -8,6 +8,7 @@ import {
   WHATSAPP_NUMBER,
 } from "@/components/heroData";
 import { manrope } from "@/lib/fonts";
+import { assetUrl } from "@/lib/assetPrefix";
 
 // The four client logos and their crops from the mobile Figma node
 // (w / h = logo box inside the 64x40 tile, as in Figma).
@@ -81,7 +82,7 @@ export default function BlueprintHeroMobile() {
       </div>
       <div className="pointer-events-none absolute top-0 -bottom-[43px] left-1/2 w-[1017px] -translate-x-1/2">
         <Image
-          src="/Images/hero/m-radial.svg"
+          src={assetUrl("/Images/hero/m-radial.svg")}
           alt=""
           fill
           className="object-fill"
@@ -168,7 +169,7 @@ export default function BlueprintHeroMobile() {
                     className="flex items-center gap-[6px] px-[12px]"
                   >
                     <Image
-                      src="/Images/hero/dot.svg"
+                      src={assetUrl("/Images/hero/dot.svg")}
                       alt=""
                       width={5}
                       height={5}
@@ -264,7 +265,7 @@ export default function BlueprintHeroMobile() {
                 WhatsApp
               </span>
               <Image
-                src="/Images/hero/wa.svg"
+                src={assetUrl("/Images/hero/wa.svg")}
                 alt=""
                 width={18}
                 height={18}
@@ -279,7 +280,7 @@ export default function BlueprintHeroMobile() {
                 Call Now
               </span>
               <Image
-                src="/Images/hero/phone.svg"
+                src={assetUrl("/Images/hero/phone.svg")}
                 alt=""
                 width={18}
                 height={18}

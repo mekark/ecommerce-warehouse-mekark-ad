@@ -1,10 +1,11 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
+import { ASSET_PREFIX } from "@/lib/assetPrefix";
 import { getPageSourceUrl } from "@/lib/sourceUrl";
 
-const FORM_ENDPOINT = "/api/enquiry-form";
-const THANK_YOU_URL = "/thank-you";
+// Routed through the asset prefix so it reaches this app (not the main site) on mekark.com.
+const FORM_ENDPOINT = `${ASSET_PREFIX}/api/enquiry-form`;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const HAS_LETTER_REGEX = /\p{L}/u;
@@ -127,7 +128,8 @@ export function useBlueprintForm() {
       }
 
       setValues(INITIAL_VALUES);
-      window.location.assign(THANK_YOU_URL);
+      // Stay on the current host/path: /thank-you on the subdomain, /e-commerce-warehouse/thank-you on mekark.com.
+      window.location.assign(`${window.location.pathname.replace(/\/$/, "")}/thank-you`);
     } catch (error) {
       setStatusMessage(
         error instanceof Error ? error.message : "Something went wrong.",

@@ -5,6 +5,7 @@ import {
   SQFT_OPTIONS,
   useBlueprintForm,
 } from "@/hooks/useBlueprintForm";
+import { assetUrl } from "@/lib/assetPrefix";
 
 const fieldBase =
   "w-full rounded-[8px] border border-solid bg-[#F0F0F0] px-[18px] py-[14px] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -35,7 +36,7 @@ export default function HeroMobileForm() {
 
   const chevron = (
     <Image
-      src="/Images/lead/m-chevron2.svg"
+      src={assetUrl("/Images/lead/m-chevron2.svg")}
       alt=""
       width={15}
       height={15}

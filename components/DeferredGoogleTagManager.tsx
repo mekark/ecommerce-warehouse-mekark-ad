@@ -13,7 +13,7 @@ const INTERACTION_EVENTS = ["pointerdown", "keydown", "scroll", "touchstart"] as
  */
 export default function DeferredGoogleTagManager({ gtmId }: { gtmId: string }) {
   const pathname = usePathname();
-  const loadImmediately = pathname.startsWith("/thank-you");
+  const loadImmediately = pathname.endsWith("/thank-you");
 
   useEffect(() => {
     let loaded = false;

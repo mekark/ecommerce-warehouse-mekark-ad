@@ -1,13 +1,14 @@
+import { assetUrl } from "@/lib/assetPrefix";
 export const FAQ_GROUPS = [
   {
     name: "Ecommerce Warehouse & Fulfilment Centre Construction",
     label: "Warehouse & Fulfilment Centre Construction",
-    icon: "/Images/faq/tab-warehouse.svg",
+    icon: assetUrl("/Images/faq/tab-warehouse.svg"),
   },
   {
     name: "Planning, Delivery & Project Support",
     label: "Planning, Delivery & Project Support",
-    icon: "/Images/faq/tab-clipboard.svg",
+    icon: assetUrl("/Images/faq/tab-clipboard.svg"),
   },
 ];
 

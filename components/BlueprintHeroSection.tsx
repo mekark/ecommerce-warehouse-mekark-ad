@@ -10,6 +10,7 @@ import {
   WHATSAPP_MESSAGE,
   WHATSAPP_NUMBER,
 } from "@/components/heroData";
+import { assetUrl } from "@/lib/assetPrefix";
 
 // Client logos (each sits in a 90x40 chip): `scale` zooms logos whose artwork has
 // extra padding inside the file; the rest use the default 34px height.
@@ -146,7 +147,7 @@ export default function BlueprintHeroSection() {
                     {FOCUS_AREAS.map((item) => (
                       <div key={item} className="flex items-center gap-[8px]">
                         <Image
-                          src="/Images/hero/dot.svg"
+                          src={assetUrl("/Images/hero/dot.svg")}
                           alt=""
                           width={8}
                           height={8}
@@ -224,7 +225,7 @@ export default function BlueprintHeroSection() {
                       WhatsApp
                     </span>
                     <Image
-                      src="/Images/hero/wa.svg"
+                      src={assetUrl("/Images/hero/wa.svg")}
                       alt=""
                       width={18}
                       height={18}
@@ -240,7 +241,7 @@ export default function BlueprintHeroSection() {
                       Call Now
                     </span>
                     <Image
-                      src="/Images/hero/phone.svg"
+                      src={assetUrl("/Images/hero/phone.svg")}
                       alt=""
                       width={18}
                       height={18}

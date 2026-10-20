@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DeferredGoogleTagManager from "@/components/DeferredGoogleTagManager";
+import { assetUrl } from "@/lib/assetPrefix";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 import "./globals.css";
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
   description:
     "Leading Turnkey ecommerce Warehouse EPC & Turnkey ecommerce logistics warehouse Construction Company – ecommerce fulfilment center warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey ecommerce warehouse Contractor & Turnkey ecommerce fulfilment centre , distribution center warehouse construction Company",
   icons: {
-    icon: "/Mekark%20Favicon-32x32px.png",
-    shortcut: "/Mekark%20Favicon-32x32px.png",
-    apple: "/Images/LogoMekark.webp",
+    icon: assetUrl("/Mekark%20Favicon-32x32px.png"),
+    shortcut: assetUrl("/Mekark%20Favicon-32x32px.png"),
+    apple: assetUrl("/Images/LogoMekark.webp"),
   },
 };
 

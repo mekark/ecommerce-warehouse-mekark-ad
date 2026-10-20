@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function ThankYouPage() {
@@ -20,13 +19,13 @@ export default function ThankYouPage() {
             the details and get back to you for the next discussion.
           </p>
           <div className="mt-10 flex justify-center">
-            <Link
-              href="/"
+            <a
+              href="./"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C4161C] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#A31217]"
             >
               <span>Back To Home</span>
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </section>
       </div>

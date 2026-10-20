@@ -6,6 +6,7 @@ import {
   BlueprintForm,
   MobileBlueprintForm,
 } from "@/components/LeadBlueprintForms";
+import { assetUrl } from "@/lib/assetPrefix";
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 760;
@@ -58,7 +59,7 @@ function ContactCards() {
       <a href={`tel:${PHONE_NUMBER}`} className={`${cardBase} h-[120px]`}>
         <span className="absolute top-1/2 left-[26.67px] flex size-[64px] -translate-y-1/2 items-center justify-center rounded-[24px] bg-[#CC000A]">
           <Image
-            src="/Images/lead/phone.svg"
+            src={assetUrl("/Images/lead/phone.svg")}
             alt=""
             width={26}
             height={26}
@@ -76,7 +77,7 @@ function ContactCards() {
         </span>
 
         <Image
-          src="/Images/lead/arrow.svg"
+          src={assetUrl("/Images/lead/arrow.svg")}
           alt=""
           width={27}
           height={26}
@@ -106,7 +107,7 @@ function ContactCards() {
 
         <span className="flex flex-1 justify-end">
           <Image
-            src="/Images/lead/arrow.svg"
+            src={assetUrl("/Images/lead/arrow.svg")}
             alt=""
             width={27}
             height={26}
@@ -143,7 +144,7 @@ function MobileContactCard({
       </span>
       <span className="flex h-[28px] w-[24px] shrink-0 items-center justify-center">
         <Image
-          src="/Images/lead/m-arrow.svg"
+          src={assetUrl("/Images/lead/m-arrow.svg")}
           alt=""
           width={24}
           height={26}
@@ -237,7 +238,7 @@ export default function LeadBlueprintSection() {
               href={`tel:${PHONE_NUMBER}`}
               icon={
                 <Image
-                  src="/Images/lead/m-phone.svg"
+                  src={assetUrl("/Images/lead/m-phone.svg")}
                   alt=""
                   width={24}
                   height={24}

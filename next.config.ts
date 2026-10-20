@@ -1,11 +1,20 @@
 import type { NextConfig } from "next";
+import { ASSET_PREFIX } from "./lib/assetPrefix";
 
 const nextConfig: NextConfig = {
+  // Served from mekark.com/e-commerce-warehouse/ via a rewrite in the main site, so
+  // all assets must live under a prefix that does not collide with the main site's /_next.
+  assetPrefix: ASSET_PREFIX,
+  async rewrites() {
+    // Keep the standalone subdomain working: map the prefixed paths back to the real ones.
+    return [{ source: `${ASSET_PREFIX}/:path*`, destination: "/:path*" }];
+  },
   // A stray lockfile in a parent folder makes Next guess the wrong root
   turbopack: {
     root: process.cwd(),
   },
   images: {
+    path: `${ASSET_PREFIX}/_next/image`,
     // Serve AVIF where supported (smaller than WebP), WebP otherwise
     formats: ["image/avif", "image/webp"],
     // Next 16 only serves allow-listed qualities (75 is the default)
