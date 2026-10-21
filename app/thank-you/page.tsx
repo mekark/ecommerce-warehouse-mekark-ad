@@ -1,15 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function ThankYouPage() {
   const [allowed, setAllowed] = useState(false);
+  const checked = useRef(false);
 
   useEffect(() => {
+    if (checked.current) return;
+    checked.current = true;
+
     let submitted = false;
     try {
-      submitted = sessionStorage.getItem("enquirySubmitted") === "1";
+      submitted = sessionStorage.getItem("thankYouAccess:ecommerce-warehouse") === "1";
+      // One-time access: clear it so a reload or revisit is blocked.
+      sessionStorage.removeItem("thankYouAccess:ecommerce-warehouse");
     } catch {}
 
     if (submitted) {
