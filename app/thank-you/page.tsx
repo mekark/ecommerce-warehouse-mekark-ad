@@ -1,6 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function ThankYouPage() {
+  const [allowed, setAllowed] = useState(false);
+
+  useEffect(() => {
+    let submitted = false;
+    try {
+      submitted = sessionStorage.getItem("enquirySubmitted") === "1";
+    } catch {}
+
+    if (submitted) {
+      setAllowed(true);
+    } else {
+      window.location.replace("./");
+    }
+  }, []);
+
+  if (!allowed) return null;
+
   return (
     <main className="min-h-screen bg-[#FAFAFA] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto flex min-h-[calc(100vh-10rem)] max-w-3xl items-center justify-center">
