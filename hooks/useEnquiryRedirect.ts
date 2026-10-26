@@ -11,9 +11,13 @@ export function useEnquiryRedirect(delay = 280, resetDelay = 900) {
     setIsRedirecting(true);
 
     window.setTimeout(() => {
-      document
-        .getElementById("enquiry-form")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // The bottom form is rendered once per breakpoint (the others are
+      // display:none), so scroll to whichever copy is actually visible.
+      const target = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-enquiry-form]"),
+      ).find((el) => el.getClientRects().length > 0);
+
+      target?.scrollIntoView({ behavior: "smooth", block: "center" });
 
       window.setTimeout(() => {
         setIsRedirecting(false);

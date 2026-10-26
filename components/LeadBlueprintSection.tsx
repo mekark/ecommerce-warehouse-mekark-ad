@@ -192,7 +192,10 @@ export default function LeadBlueprintSection() {
               <ContactCards />
             </div>
 
-            <div className="absolute top-[calc(50%-0.5px)] left-[1068px] -translate-y-1/2">
+            <div
+              data-enquiry-form
+              className="absolute top-[calc(50%-0.5px)] left-[1068px] -translate-y-1/2"
+            >
               <BlueprintForm />
             </div>
           </div>
@@ -273,7 +276,9 @@ export default function LeadBlueprintSection() {
             </MobileContactCard>
           </div>
 
-          <MobileBlueprintForm />
+          <div data-enquiry-form className="w-full">
+            <MobileBlueprintForm />
+          </div>
         </div>
       </div>
 
@@ -289,7 +294,9 @@ export default function LeadBlueprintSection() {
               <ContactCards />
             </div>
 
-            <BlueprintForm />
+            <div data-enquiry-form>
+              <BlueprintForm />
+            </div>
           </div>
         </div>
       </div>
