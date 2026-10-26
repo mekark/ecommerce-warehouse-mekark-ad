@@ -12,10 +12,16 @@ export const HIGHLIGHTS = [
 
 // Listed row by row in a two-column grid
 export const FOCUS_AREAS = [
-  "Engineering, Electronics, Electrical & Semiconductor.",
-  "Retail, Cold Storage, E-commerce, Distributions.",
-  "Automotive, Electrical Vehicle, Machinery & Heavy Manufacturing.",
-  "Textile, Pharmaceutical, Chemical & Life Sciences.",
-  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
-  "Apparel, Leather, Food Processing, Beverage, FMCG.",
+  {
+    title: "Multi-Tier Mezzanine Ready:",
+    text: "Heavy structural steel G+1, G+2 & G+3 floors for high-density piece picking.",
+  },
+  {
+    title: "Automation & Robotics Ready:",
+    text: "Precision-leveled, dust-free floors for AGVs, AMRs, and cross-belt sorters.",
+  },
+  {
+    title: "High Roof-Load Capacity:",
+    text: "Pre-engineered rafters to support suspended conveyors, HVAC ducts & ESFR sprinklers.",
+  },
 ];

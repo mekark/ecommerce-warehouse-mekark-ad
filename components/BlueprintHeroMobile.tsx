@@ -52,18 +52,18 @@ export default function BlueprintHeroMobile() {
     <section
       className={`${manrope.className} relative w-full overflow-hidden bg-[#060606] text-white`}
     >
-      {/* BACKGROUND: sunset steel frame, dark overlay, fade-to-black, radial vignette */}
-      <div className="pointer-events-none absolute top-[419px] bottom-0 left-1/2 w-[505px] -translate-x-1/2">
+      {/* BACKGROUND: sunset steel frame (Figma "image 23": 390x1203, 2px blur, pinned to the bottom), dark overlay, fade-to-black, radial vignette */}
+      <div className="pointer-events-none absolute bottom-0 -inset-x-[8px] h-[1203px] blur-[2px]">
         <Image
-          src="/Images/hero/m-bg.webp"
+          src="/Images/hero/m-bg-steel-sunset.webp"
           alt=""
           fill
           // This tall background is the mobile LCP element, so load it up front
           loading="eager"
           fetchPriority="high"
           quality={60}
-          // It sits under a dark overlay, so ~1x resolution is enough: 320px at
-          // 1.75 DPR resolves to the 560w candidate (see imageSizes in next.config)
+          // It sits under a dark overlay and a 2px blur, so ~1x resolution is enough:
+          // 320px at 1.75 DPR resolves to the 560w candidate (see imageSizes in next.config)
           sizes="(min-width: 640px) 1px, 320px"
           className="object-cover"
         />
@@ -102,7 +102,7 @@ export default function BlueprintHeroMobile() {
             />
           </div>
           <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[12px] py-[6px] text-[12px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5]">
-            Get Free Quote
+            Request an Estimate
           </EnquiryFormButton>
         </header>
 
@@ -111,7 +111,7 @@ export default function BlueprintHeroMobile() {
           <div className="absolute top-[15px] left-5 flex max-w-[calc(100%-40px)] items-center gap-[8px] rounded-full border border-solid border-white/20 px-[12px] py-[6px]">
             <span className="size-[8px] shrink-0 rounded-full bg-[#E40015]" />
             <p className="text-[10px] leading-[16px] font-medium">
-              Ecommerce Fulfilment Warehouse Construction Company
+              Engineered for Rapid Dispatch, Automation & High SKU Density
             </p>
           </div>
 
@@ -134,12 +134,12 @@ export default function BlueprintHeroMobile() {
             </div>
 
             <h2 className="absolute top-[26px] left-5 w-[338px] max-w-[calc(100%-40px)] -translate-y-1/2 text-[22px] leading-[24px] font-semibold">
-              Build Warehouses. Design to Delivery
+              High-Throughput E-Commerce
             </h2>
 
-            <div className="absolute top-[55px] left-0 flex h-[23px] w-[352px] max-w-full items-center bg-[#C4161C] pl-5">
-              <p className="text-[16px] leading-[normal] font-semibold whitespace-nowrap">
-                Construction - Ecommerce Hub – 150 days*
+            <div className="absolute top-[44px] left-0 w-[338px] max-w-[calc(100%-20px)] pl-5">
+              <p className="text-[22px] leading-[24px] font-semibold">
+                Fulfillment Center Construction Company
               </p>
             </div>
           </div>
@@ -149,34 +149,20 @@ export default function BlueprintHeroMobile() {
           {/* DESCRIPTION */}
           <div className="flex w-full flex-col gap-[10px]">
             <p className="w-full text-[13px] leading-[normal] font-normal text-[#F3F3F3]">
-              <span className="text-[#ED1D23]">MEKARK</span>
-              {" - Builds Every Structure You Want."}
-              <br />
-              {"All Ecommerce Hub Fulfilment Distribution Center Warehouse Constructions – "}
-              <span className="font-bold text-white">ALL INDIA</span>
+              Purpose-built fulfillment infrastructure designed for multi-tier pick modules, automated conveyor systems, robotic AGVs, and rapid parcel sortation.
             </p>
 
             <div className="flex w-full flex-col gap-[4px]">
-              <p className="w-full text-[13px] leading-[normal] font-bold text-white">
-                In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
-              </p>
-
               {/* FOCUS AREAS */}
-              <ul className="flex w-full flex-col gap-[6px]">
+              <ul className="flex w-full flex-col gap-[8px]">
                 {FOCUS_AREAS.map((item) => (
                   <li
-                    key={item}
-                    className="flex items-center gap-[6px] px-[12px]"
+                    key={item.title}
+                    className="border-l-[3px] border-[#ED1D23] bg-white/5 py-[8px] pr-[12px] pl-[12px]"
                   >
-                    <Image
-                      src={assetUrl("/Images/hero/dot.svg")}
-                      alt=""
-                      width={5}
-                      height={5}
-                      className="size-[5px] shrink-0"
-                    />
-                    <span className="min-w-0 flex-1 text-[12px] leading-[20px] text-white/70">
-                      {item}
+                    <span className="block text-[12px] leading-[18px] text-white/70">
+                      <span className="font-bold text-white">{item.title}</span>{" "}
+                      {item.text}
                     </span>
                   </li>
                 ))}

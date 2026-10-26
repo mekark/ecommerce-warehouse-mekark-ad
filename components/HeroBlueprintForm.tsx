@@ -1,9 +1,8 @@
 "use client";
 
-import {
-  SQFT_OPTIONS,
-  useBlueprintForm,
-} from "@/hooks/useBlueprintForm";
+import { type ChangeEvent } from "react";
+import SqftListbox from "@/components/SqftListbox";
+import { useBlueprintForm } from "@/hooks/useBlueprintForm";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -41,13 +40,13 @@ export default function HeroBlueprintForm() {
 
   return (
     <div className="flex w-full max-w-[659px] shrink-0 flex-col items-center gap-[26px] self-center rounded-[31.931px] bg-white/10 px-5 py-[32px] shadow-[0px_26.428px_88.092px_0px_rgba(0,0,0,0.45)] backdrop-blur-[15px] sm:px-[50px] sm:py-[44px] min-[1024px]:mt-[1.08px] min-[1024px]:w-[659px]">
-      <div className="flex w-full max-w-[364px] flex-col items-start gap-[6px]">
+      <div className="flex w-full max-w-[364px] flex-col items-start gap-[6px] sm:max-w-full sm:items-center sm:text-center">
         <h3 className="w-full text-[22px] leading-[normal] font-extrabold text-white sm:text-[24px]">
-          Request Your Project Blueprint
+          Plan Your E-Commerce Fulfillment Center
         </h3>
-        <div className="flex w-full max-w-[349.431px] flex-col items-center justify-center">
-          <p className="w-full max-w-[337px] text-[14px] leading-[normal] font-medium text-black">
-            Get a custom layout, cost range &amp; 150-day* timeline
+        <div className="flex w-full max-w-[349.431px] flex-col items-center justify-center sm:max-w-full sm:items-center">
+          <p className="w-full max-w-[337px] text-[14px] sm:max-w-full leading-[normal] font-medium text-white">
+            Get a custom structural layout optimized for sorting, mezzanines &amp; rapid dispatch.
           </p>
         </div>
       </div>
@@ -62,7 +61,7 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col gap-0 sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
               <label htmlFor="bh-name" className={labelClass}>
-                Full Name*
+                Full Name<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="bh-name"
@@ -78,7 +77,7 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-location" className={labelClass}>
-                Project Location
+                Project Location<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="bh-location"
@@ -97,7 +96,7 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-phone" className={labelClass}>
-                Mobile Number*
+                Mobile Number<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="bh-phone"
@@ -115,7 +114,7 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-email" className={labelClass}>
-                Email Address
+                Email Address<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="bh-email"
@@ -134,7 +133,7 @@ export default function HeroBlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-industry" className={labelClass}>
-                Industry Type*
+                Industry Type<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="bh-industry"
@@ -150,22 +149,18 @@ export default function HeroBlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-sqft" className={labelClass}>
-                Project Sq. Ft*
+                Project Sq. Ft<span className="text-[#ED1D23]">*</span>
               </label>
-              <select
+              <SqftListbox
                 id="bh-sqft"
-                name="sqft"
                 value={values.sqft}
-                onChange={handleChange}
+                onChange={(value) =>
+                  handleChange({
+                    target: { name: "sqft", value },
+                  } as ChangeEvent<HTMLSelectElement>)
+                }
                 className={`${selectClass(errors.sqft, !!values.sqft)} rounded-[8.809px] tracking-normal`}
-              >
-                <option value="">Select Sq.ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+              />
               {errorText(errors.sqft)}
             </div>
           </div>
@@ -173,7 +168,7 @@ export default function HeroBlueprintForm() {
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
             <label htmlFor="bh-details" className={labelClass}>
-              Requirement Details*
+              Requirement Details<span className="text-[#ED1D23]">*</span>
             </label>
             <textarea
               id="bh-details"
@@ -199,7 +194,7 @@ export default function HeroBlueprintForm() {
             disabled={isSubmitting}
             className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? "Submitting..." : "Get a Free Quote →"}
+            {isSubmitting ? "Submitting..." : "Request an Estimate →"}
           </button>
 
           <p className="py-px text-center text-[12px] leading-[normal] font-medium tracking-[0.3303px] text-[#DCDCDC]">

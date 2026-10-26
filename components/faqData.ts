@@ -15,54 +15,37 @@ export const FAQ_GROUPS = [
 export const FAQ_ITEMS = [
   {
     group: "Ecommerce Warehouse & Fulfilment Centre Construction",
-    question: "How is an ecommerce warehouse different from a traditional warehouse?",
+    question:
+      "How does ecommerce fulfilment centre construction differ from standard warehousing?",
     answer:
-      "The ecommerce warehouse is designed based on speed and efficiency. It should be planned for high SKUs, pick-pack-ship processes, returns handling and fast dock turnarounds, while a storage warehouse will not require this.",
-  },
-  {
-    group: "Ecommerce Warehouse & Fulfilment Centre Construction",
-    question: "What layout does an ecommerce fulfilment centre need?",
-    answer:
-      "The layout depends on daily order volume, SKU count and returns handling. For ecommerce fulfilment centre construction, we plan receiving, storage, packing and dispatch zones at the design stage so goods move in one clean flow.",
+      "Unlike bulk pallet storage, fulfilment warehouse construction requires multi-tier structural mezzanines (increasing floor area by 100%–200%), higher collateral roof loads for conveyors and ESFR sprinklers, higher electrical load infrastructure for automation, and extensive employee welfare blocks.",
   },
   {
     group: "Ecommerce Warehouse & Fulfilment Centre Construction",
     question:
-      "How does ecommerce logistics warehouse construction help deliver orders faster?",
+      "Can Mekark design and fabricate multi-level structural steel mezzanines inside the warehouse?",
     answer:
-      "Ecommerce logistics warehouse construction plans dock positions, truck access and internal movement around your dispatch targets. Fewer bottlenecks between racking, packing and loading mean faster order turnaround.",
+      "Yes. We manufacture both the primary PEB building envelope and heavy-duty composite/deck-slab or grating mezzanines in-house, ensuring seamless structural integration.",
   },
   {
     group: "Ecommerce Warehouse & Fulfilment Centre Construction",
-    question: "Do you build for both D2C brands and marketplace sellers?",
+    question:
+      "How is fire safety engineered in high-density ecommerce fulfillment center construction?",
     answer:
-      "Yes. As an ecommerce fulfilment centre construction company, we handle fulfillment center construction company for D2C brands, marketplace sellers, retailers and 3PL operators, with the structure sized to each operator's order profile.",
+      "Because e-commerce hubs store high-density corrugated cartons and plastics across multi-tier racks, standard wall hydrants are insufficient. In our ecommerce warehouse construction, we engineer the PEB roof rafters to support Early Suppression Fast Response (ESFR) ceiling sprinklers and in-rack sprinkler piping networks, alongside NBC-compliant fire walls and smoke-exhaust vents.",
   },
   {
     group: "Planning, Delivery & Project Support",
     question:
-      "How should we plan an ecommerce warehouse for seasonal peaks?",
+      "What floor flatness standards are required for robotic AGVs and Autonomous Mobile Robots (AMRs)?",
     answer:
-      "Allow for additional bay capacity, dock doors, and future expansion capacity during the design phase. We analyse your high season requirements in order to build a fulfilment warehouse that will be able to cope with peaks during the sales period.",
-  },
-  {
-    group: "Planning, Delivery & Project Support",
-    question: "What should I look for in an ecommerce warehouse contractor?",
-    answer:
-      "Search for single-point accountability, in-house structural engineering and a proven track record. As an ecommerce warehouse contractor, Mekark offers all three, backed by 200+ completed industrial and commercial projects.",
+      "Robotic fulfilment systems require ultra-flat, zero-lippage floors to prevent sensor drift and wheel wear. As a specialized ecommerce warehouse contractor, we construct TR34 FM1 / FM2 compliant laser-screeded floors with armoured construction joints and anti-static, dust-free polyurethane or liquid hardener coatings.",
   },
   {
     group: "Planning, Delivery & Project Support",
     question:
-      "Will you take up ecommerce distribution center construction for regional and last-mile networks?",
+      "How do you maintain comfortable working temperatures for hundreds of pickers inside a large fulfilment centre?",
     answer:
-      "Yes. We deliver ecommerce distribution center construction for regional and last-mile distribution through our in-house design and fabrication process.",
-  },
-  {
-    group: "Planning, Delivery & Project Support",
-    question:
-      "Is it possible to construct an ecommerce warehouse with multiple stories in places where there is limited space?",
-    answer:
-      "Yes. In the case of urban or space-challenged areas, we provide you with an ecommerce warehouse construction that has multiple stories.",
+      "High workforce density requires superior air changes and thermal control. Our ecommerce logistics warehouse construction integrates double-skin insulated roofing sheets or under-deck reflective insulation, high-volume low-speed (HVLS) industrial fans, forced-draft wall louvers, and ridge ventilators to lower indoor heat by up to 6°C without expensive full-hall air conditioning.",
   },
 ];

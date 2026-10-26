@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import {
-  SQFT_OPTIONS,
-  useBlueprintForm,
-} from "@/hooks/useBlueprintForm";
+import { type ChangeEvent } from "react";
+import SqftListbox from "@/components/SqftListbox";
+import { useBlueprintForm } from "@/hooks/useBlueprintForm";
 import { assetUrl } from "@/lib/assetPrefix";
+import RedStarPlaceholder from "@/components/RedStarPlaceholder";
 
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
@@ -61,7 +60,7 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35px]">
             <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
               <label htmlFor="lb-name" className={labelClass}>
-                Full Name*
+                Full Name<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="lb-name"
@@ -77,7 +76,7 @@ export function BlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-location" className={labelClass}>
-                Project Location
+                Project Location<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="lb-location"
@@ -96,7 +95,7 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-phone" className={labelClass}>
-                Mobile Number*
+                Mobile Number<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="lb-phone"
@@ -133,7 +132,7 @@ export function BlueprintForm() {
           <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-industry" className={labelClass}>
-                Industry Type*
+                Industry Type<span className="text-[#ED1D23]">*</span>
               </label>
               <input
                 id="lb-industry"
@@ -149,22 +148,18 @@ export function BlueprintForm() {
 
             <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
               <label htmlFor="lb-sqft" className={labelClass}>
-                Project Sq. Ft*
+                Project Sq. Ft<span className="text-[#ED1D23]">*</span>
               </label>
-              <select
+              <SqftListbox
                 id="lb-sqft"
-                name="sqft"
                 value={values.sqft}
-                onChange={handleChange}
-                className={selectClass(errors.sqft, !!values.sqft)}
-              >
-                <option value="">Select Sq.ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+                onChange={(value) =>
+                  handleChange({
+                    target: { name: "sqft", value },
+                  } as ChangeEvent<HTMLSelectElement>)
+                }
+                className={`${selectClass(errors.sqft, !!values.sqft)}`}
+              />
               {errorText(errors.sqft)}
             </div>
           </div>
@@ -172,7 +167,7 @@ export function BlueprintForm() {
           {/* ROW 4 */}
           <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
             <label htmlFor="lb-details" className={labelClass}>
-              Requirement Details*
+              Requirement Details<span className="text-[#ED1D23]">*</span>
             </label>
             <textarea
               id="lb-details"
@@ -198,7 +193,7 @@ export function BlueprintForm() {
             disabled={isSubmitting}
             className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? "Submitting..." : "Get My Free Quote →"}
+            {isSubmitting ? "Submitting..." : "Request an Estimate →"}
           </button>
 
           <p className="py-px text-center text-[12px] leading-[normal] font-medium tracking-[0.3303px] text-[#5A5A5A]">
@@ -233,19 +228,9 @@ export function MobileBlueprintForm() {
     ) : null;
 
   const selectClass = (error?: string, hasValue?: boolean) =>
-    `${mobileField} ${borderColor(error)} cursor-pointer appearance-none bg-none! pr-[32px] pl-[20px] ${
-      hasValue ? "text-black" : "text-[#757575]"
-    }`;
-
-  const chevron = (
-    <Image
-      src={assetUrl("/Images/lead/m-chevron2.svg")}
-      alt=""
-      width={15}
-      height={15}
-      className="pointer-events-none absolute top-1/2 right-[16px] size-[15px] -translate-y-1/2 rotate-90"
-    />
-  );
+    `${mobileField} ${borderColor(error)} cursor-pointer text-left pr-[16px] pl-[20px] ${
+      hasValue ? "text-black" : "text-transparent!"
+    } [&>option]:text-black`;
 
   return (
     <div className="flex w-full flex-col gap-[16px] rounded-[24px] border border-solid border-[#E2E2E2] bg-white p-[20px] drop-shadow-[0px_24px_40px_rgba(0,0,0,0.06)]">
@@ -265,103 +250,109 @@ export function MobileBlueprintForm() {
       >
         <div className="flex w-full flex-col gap-[16px]">
           <div>
-            <input
-              type="text"
-              name="name"
-              aria-label="Full name"
-              placeholder="Enter Your name"
-              value={values.name}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.name)} px-[16px]`}
-            />
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                aria-label="Full name"
+                value={values.name}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.name)} px-[16px]`}
+              />
+              <RedStarPlaceholder text="Enter Your name" show={!values.name} left={16} />
+            </div>
             {errorText(errors.name)}
           </div>
 
           <div>
-            <input
-              type="text"
-              name="location"
-              aria-label="Project location"
-              placeholder="Enter project location"
-              value={values.location}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.location)} pr-[32px] pl-[20px] tracking-[0.3px]`}
-            />
+            <div className="relative">
+              <input
+                type="text"
+                name="location"
+                aria-label="Project location"
+                value={values.location}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.location)} pr-[32px] pl-[20px] tracking-[0.3px]`}
+              />
+              <RedStarPlaceholder text="Enter project location" show={!values.location} left={20} />
+            </div>
             {errorText(errors.location)}
           </div>
 
           <div>
-            <input
-              type="tel"
-              name="phoneNumber"
-              maxLength={10}
-              inputMode="numeric"
-              aria-label="Mobile number"
-              placeholder="Mobile Number*"
-              value={values.phoneNumber}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.phoneNumber)} px-[16px]`}
-            />
+            <div className="relative">
+              <input
+                type="tel"
+                name="phoneNumber"
+                maxLength={10}
+                inputMode="numeric"
+                aria-label="Mobile number"
+                value={values.phoneNumber}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.phoneNumber)} px-[16px]`}
+              />
+              <RedStarPlaceholder text="Mobile Number" show={!values.phoneNumber} left={16} />
+            </div>
             {errorText(errors.phoneNumber)}
           </div>
 
           <div>
-            <input
-              type="email"
-              name="email"
-              aria-label="Email address"
-              placeholder="Enter Email Address"
-              value={values.email}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.email)} px-[16px]`}
-            />
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                aria-label="Email address"
+                value={values.email}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.email)} px-[16px]`}
+              />
+              <RedStarPlaceholder text="Enter Email Address" show={!values.email} left={16} />
+            </div>
             {errorText(errors.email)}
           </div>
 
           <div>
-            <input
-              type="text"
-              name="industry"
-              aria-label="Industry"
-              placeholder="Enter your Industry"
-              value={values.industry}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.industry)} px-[16px]`}
-            />
+            <div className="relative">
+              <input
+                type="text"
+                name="industry"
+                aria-label="Industry"
+                value={values.industry}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.industry)} px-[16px]`}
+              />
+              <RedStarPlaceholder text="Enter your Industry" show={!values.industry} left={16} />
+            </div>
             {errorText(errors.industry)}
           </div>
 
           <div>
-            <div className="relative">
-              <select
-                name="sqft"
-                aria-label="Project square feet"
-                value={values.sqft}
-                onChange={handleChange}
-                className={selectClass(errors.sqft, !!values.sqft)}
-              >
-                <option value="">Select Sq. Ft Requirement</option>
-                {SQFT_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              {chevron}
-            </div>
+            <SqftListbox
+              id="lm-sqft"
+              value={values.sqft}
+              onChange={(value) =>
+                handleChange({
+                  target: { name: "sqft", value },
+                } as ChangeEvent<HTMLSelectElement>)
+              }
+              className={selectClass(errors.sqft, !!values.sqft)}
+              star
+            />
             {errorText(errors.sqft)}
           </div>
 
           <div>
-            <textarea
-              name="details"
-              rows={1}
-              aria-label="Requirement details"
-              placeholder="Enter requirement details*"
-              value={values.details}
-              onChange={handleChange}
-              className={`${mobileField} ${borderColor(errors.details)} block h-[46px] resize-none pr-[32px] pl-[20px]`}
-            />
+            <div className="relative">
+              <textarea
+                name="details"
+                rows={1}
+                aria-label="Requirement details"
+                value={values.details}
+                onChange={handleChange}
+                className={`${mobileField} ${borderColor(errors.details)} block h-[46px] resize-none pr-[32px] pl-[20px]`}
+              />
+              <RedStarPlaceholder text="Enter requirement details" show={!values.details} left={20} top={13} />
+            </div>
             {errorText(errors.details)}
           </div>
         </div>
@@ -378,7 +369,7 @@ export function MobileBlueprintForm() {
             disabled={isSubmitting}
             className="flex w-full items-center justify-center rounded-[8px] bg-[#C4161C] px-[36px] py-[14px] text-center text-[14px] leading-[normal] font-semibold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8px_16px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? "Submitting..." : "Get My Free Quote →"}
+            {isSubmitting ? "Submitting..." : "Request an Estimate →"}
           </button>
 
           <p className="w-full text-center text-[12px] leading-[normal] font-medium text-[#5A5A5A]">

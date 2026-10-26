@@ -3,11 +3,10 @@
 import Image from "next/image";
 import { manrope } from "@/lib/fonts";
 import { useState } from "react";
-import { FAQ_GROUPS, FAQ_ITEMS } from "@/components/faqData";
+import { FAQ_ITEMS } from "@/components/faqData";
 import ScaledCanvas from "@/components/ScaledCanvas";
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 1080;
 
 function Items({
   items,
@@ -97,69 +96,6 @@ function Items({
   );
 }
 
-function Tabs({
-  active,
-  onChange,
-  compact = false,
-}: {
-  active: string;
-  onChange: (group: string) => void;
-  /** Phone layout: smaller pills that wrap their label onto two lines */
-  compact?: boolean;
-}) {
-  return (
-    <div
-      className={`flex items-start ${
-        compact ? "gap-[10px]" : "flex-wrap gap-3 sm:gap-6"
-      }`}
-    >
-      {FAQ_GROUPS.map(({ name, label, icon }, tabIndex) => {
-        const selected = name === active;
-
-        return (
-          <button
-            key={name}
-            type="button"
-            onClick={() => onChange(name)}
-            aria-pressed={selected}
-            className={`flex items-center justify-center gap-[8px] rounded-[50px] leading-[normal] ${
-              compact
-                ? "px-[10px] py-[11px] text-left text-[10px]"
-                : "px-[20px] py-[12px] text-[14px] whitespace-nowrap sm:px-[28px] sm:py-[15px]"
-            } ${
-              selected
-                ? "bg-[#C4161C] font-bold text-[#F5F5F5]"
-                : "bg-[#EBEBEB] font-medium text-[#929292]"
-            }`}
-          >
-            <span
-              aria-hidden
-              className={`shrink-0 bg-current ${compact ? "size-[14px]" : "size-[24px]"}`}
-              style={{
-                maskImage: `url(${icon})`,
-                WebkitMaskImage: `url(${icon})`,
-                maskRepeat: "no-repeat",
-                WebkitMaskRepeat: "no-repeat",
-                maskPosition: "center",
-                WebkitMaskPosition: "center",
-                maskSize: "contain",
-                WebkitMaskSize: "contain",
-              }}
-            />
-            {compact ? (
-              <span className={tabIndex === 0 ? "w-[149px]" : "w-[114px]"}>
-                {label}
-              </span>
-            ) : (
-              label
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function Heading() {
   return (
     <div className="flex flex-col items-start gap-[6px]">
@@ -176,17 +112,64 @@ function Heading() {
   );
 }
 
+/** Small "FAQ" pill shown above the left-hand heading. */
+function Badge({ desktop = false }: { desktop?: boolean }) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border border-solid border-[rgba(237,32,36,0.2)] bg-[rgba(237,32,36,0.1)] ${
+        desktop
+          ? "gap-[8.485px] px-[13.788px] py-[7.425px]"
+          : "gap-[6px] px-[11px] py-[5px]"
+      }`}
+    >
+      <span
+        className={`shrink-0 rounded-full bg-[#E40015] ${
+          desktop ? "size-[8.485px]" : "size-[6px]"
+        }`}
+      />
+      <span
+        className={`font-bold text-[#5A5656] uppercase ${
+          desktop
+            ? "text-[15.333px] leading-[23.04px] tracking-[3.3787px]"
+            : "text-[12px] leading-[18px] tracking-[2.6px]"
+        }`}
+      >
+        faq
+      </span>
+    </span>
+  );
+}
+
+function LeftIntro() {
+  return (
+    <div className="flex w-[531px] shrink-0 flex-col items-start gap-[28px] pt-[55px]">
+      <div className="relative -top-[32px] flex w-full flex-col items-start gap-[24px]">
+        <Badge desktop />
+        <h2 className="w-full text-[64px] leading-[60.8px] font-extrabold tracking-[-2.56px] text-[#101116]">
+          Frequently Asked
+          <br />
+          <span className="text-[#E60F1A]">Questions</span>
+        </h2>
+      </div>
+
+      <div className="relative -top-[32px] h-[464px] w-[463px] shrink-0 overflow-hidden">
+        <Image
+          src="/Images/faq/faq-bg.webp"
+          alt=""
+          width={1247}
+          height={1261}
+          sizes="24vw"
+          className="size-full object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function FaqAccordionSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const [activeGroup, setActiveGroup] = useState<string>(FAQ_GROUPS[0].name);
-  const visibleItems = FAQ_ITEMS.filter((item) => item.group === activeGroup);
-
-  // Switching tabs opens that tab's first question
-  const changeGroup = (group: string) => {
-    setActiveGroup(group);
-    setOpenIndex(FAQ_ITEMS.findIndex((item) => item.group === group));
-  };
+  const visibleItems = FAQ_ITEMS;
 
   const toggleItem = (index: number) =>
     setOpenIndex((current) => (current === index ? null : index));
@@ -196,29 +179,11 @@ export default function FaqAccordionSection() {
       {/* DESKTOP: exact Figma frame, scaled to the viewport */}
       <div className="hidden min-[1024px]:block">
         <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
-          <div
-            className="relative w-[1920px] overflow-hidden bg-white"
-            style={{ minHeight: DESIGN_HEIGHT }}
-          >
-            {/* question-mark artwork */}
-            <div className="absolute bottom-[132px] left-[-240px] h-[1002px] w-[1098px] overflow-hidden">
-              <Image
-                src="/Images/faq/faq-bg.webp"
-                alt=""
-                width={1536}
-                height={1024}
-                sizes="79vw"
-                className="absolute top-[-0.02%] left-0 h-[100.07%] w-[136.98%] max-w-none"
-              />
-            </div>
+          <div className="relative flex w-[1920px] items-start bg-white pt-[95px] pr-[107px] pb-[40px] pl-[187px]">
+            <LeftIntro />
 
-            {/* faq list */}
-            <div className="relative ml-[901px] flex flex-col items-start gap-[40px] pt-[81px] pb-[60px]">
-              <div className="flex flex-col items-start gap-[24px]">
-                <Heading />
-                <Tabs active={activeGroup} onChange={changeGroup} />
-              </div>
-
+            {/* faq list — 901px from left edge → 183px after 531px intro */}
+            <div className="ml-[183px] flex flex-col items-start">
               <Items
                 items={visibleItems}
                 openIndex={openIndex}
@@ -232,29 +197,24 @@ export default function FaqAccordionSection() {
 
       {/* MOBILE (below 640px) */}
       <div className="flex flex-col gap-[24px] bg-[#F9F6F7] px-[20px] py-[32px] sm:hidden">
-        <div className="flex w-full flex-col">
+        <div className="flex w-full flex-col gap-[16px]">
           <div className="flex flex-col items-start gap-[12px] py-[6px]">
-            <span className="rounded-full border border-solid border-[#FCD5D0] bg-[#FEEAE7] px-[18.67px] py-[8px] text-[14px] leading-[26px] font-semibold text-[#CC000A]">
-              FAQ
-            </span>
-
-            <h2 className="w-[309px] max-w-full text-[28px] leading-[32px] font-bold text-[#070506]">
+            <Badge />
+            <h2 className="w-full max-w-[320px] text-[28px] leading-[32px] font-extrabold tracking-[-0.5px] text-[#101116]">
               Frequently Asked
               <br />
-              Questions
+              <span className="text-[#E60F1A]">Questions</span>
             </h2>
-
-            <Tabs compact active={activeGroup} onChange={changeGroup} />
           </div>
 
-          <div className="relative aspect-[350/327] w-full overflow-hidden">
+          <div className="relative mx-auto aspect-square w-full max-w-[360px] overflow-hidden">
             <Image
               src="/Images/faq/faq-bg.webp"
               alt=""
-              width={1536}
-              height={1024}
-              sizes="140vw"
-              className="absolute top-[-0.02%] left-0 h-[100.07%] w-[140.11%] max-w-none"
+              width={1247}
+              height={1261}
+              sizes="90vw"
+              className="size-full object-contain"
             />
           </div>
         </div>
@@ -324,21 +284,19 @@ export default function FaqAccordionSection() {
 
       {/* TABLET (640px - 1023px) */}
       <div className="hidden sm:max-[1023px]:block">
-        <div className="relative mx-auto h-[220px] w-full max-w-[560px] overflow-hidden sm:h-[320px]">
+        <div className="relative mx-auto aspect-square w-full max-w-[420px] overflow-hidden">
           <Image
             src="/Images/faq/faq-bg.webp"
             alt=""
-            fill
-            sizes="(min-width: 640px) 560px, 100vw"
-            className="object-cover object-[15%_center]"
+            width={1247}
+            height={1261}
+            sizes="(min-width: 640px) 420px, 100vw"
+            className="size-full object-contain"
           />
         </div>
 
         <div className="flex flex-col gap-8 px-5 pt-8 pb-12 sm:px-10 sm:pb-16">
-          <div className="flex flex-col gap-6">
-            <Heading />
-            <Tabs active={activeGroup} onChange={changeGroup} />
-          </div>
+          <Heading />
 
           <Items
             items={visibleItems}

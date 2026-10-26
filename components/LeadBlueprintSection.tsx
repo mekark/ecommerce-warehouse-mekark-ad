@@ -214,7 +214,7 @@ export default function LeadBlueprintSection() {
         <div className="absolute top-0 left-0 h-[1108px] w-full bg-gradient-to-b from-transparent to-black to-[54.327%]" />
         <div className="absolute top-[-61px] left-[180px] size-[274px] rounded-full bg-[rgba(228,0,21,0.3)] opacity-[0.93] blur-[61.667px]" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[390px] flex-col items-center gap-[26px] px-[20px] pt-[86px] pb-[40px]">
+        <div className="relative z-10 mx-auto flex w-full max-w-[390px] flex-col items-center gap-[26px] px-[20px] pt-[56px] pb-[40px]">
           <div className="flex w-full flex-col gap-[12px] px-[20px]">
             <h2 className="text-[28px] leading-[34px] font-extrabold text-white">
               Get Your <span className="text-[#ED1D23]">Warehouse Project</span>{" "}

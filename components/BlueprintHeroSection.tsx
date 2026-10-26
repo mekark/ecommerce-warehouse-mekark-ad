@@ -97,7 +97,7 @@ export default function BlueprintHeroSection() {
               </div>
 
               <EnquiryFormButton className="flex items-center justify-center rounded-[8px] bg-[#C4161C] px-[16px] py-[8px] text-[14px] font-semibold leading-[normal] whitespace-pre text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] sm:px-[24px] sm:py-[10px] sm:text-[16px]">
-                {"Get  Free Quote "}
+                {"Request an Estimate"}
               </EnquiryFormButton>
             </header>
 
@@ -111,50 +111,36 @@ export default function BlueprintHeroSection() {
                   <p
                     className={`${inter.className} text-[11px] leading-[20px] font-medium text-white sm:text-[14px] sm:whitespace-nowrap`}
                   >
-                    Ecommerce Fulfilment Warehouse Construction Company
+                    Engineered for Rapid Dispatch, Automation & High SKU Density
                   </p>
                 </div>
 
                 {/* HEADING */}
                 <div className="flex w-full flex-col items-start gap-[13px]">
                   <h2 className="w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:w-[891px] min-[1024px]:max-w-full">
-                    Build Warehouses. Design to Delivery
+                    High-Throughput E-Commerce
                   </h2>
-                  <p className="max-w-full bg-[#ED1D23] px-[5px] text-[24px] leading-[44px] font-bold text-white sm:max-[1023px]:text-[34px] sm:max-[1023px]:leading-[56px] min-[1024px]:text-[42px] min-[1024px]:leading-[56px]">
-                    Construction - Ecommerce Hub – 150 days
-                    <span className="align-top text-[20px] leading-[44px] font-normal sm:max-[1023px]:text-[26px] sm:max-[1023px]:leading-[56px] min-[1024px]:text-[30px] min-[1024px]:leading-[56px]">
-                      *
-                    </span>
+                  <p className="max-w-full text-[32px] leading-[1.1] font-bold text-white sm:text-[48px] sm:leading-[48px] min-[1024px]:whitespace-nowrap">
+                    Fulfillment Center Construction Company
                   </p>
                 </div>
 
                 {/* DESCRIPTION */}
                 <div className="flex w-full flex-col gap-[16px]">
-                  <p className="w-full text-[16px] leading-[24px] font-normal text-[#A9A9A9] sm:text-[22px] sm:leading-[28px] min-[1024px]:whitespace-nowrap">
-                    <span className="font-bold text-[#ED1D23]">MEKARK</span>
-                    {" - Builds Every Structure You Want."}
-                    <br />
-                    {"All Ecommerce Hub Fulfilment Distribution Center Warehouse Constructions  – "}
-                    <span className="font-bold text-white">ALL INDIA</span>
-                  </p>
-
-                  <p className="w-full text-[16px] leading-[24px] font-bold text-[#F3F3F3] sm:text-[22px] sm:leading-[28px]">
-                    In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+                  <p className="w-full text-[16px] leading-[24px] font-normal text-[#A9A9A9] sm:text-[22px] sm:leading-[28px]">
+                    Purpose-built fulfillment infrastructure designed for multi-tier pick modules, automated conveyor systems, robotic AGVs, and rapid parcel sortation.
                   </p>
 
                   {/* FOCUS AREAS */}
-                  <div className="grid grid-cols-1 gap-x-[20px] gap-y-[16px] sm:inline-grid sm:grid-cols-[repeat(2,fit-content(100%))]">
+                  <div className="grid w-full grid-cols-1 gap-[14px] min-[1024px]:w-full min-[1024px]:max-w-none min-[1280px]:grid-cols-3 min-[1280px]:gap-[16px] min-[1700px]:w-[calc(100%+100px)]">
                     {FOCUS_AREAS.map((item) => (
-                      <div key={item} className="flex items-center gap-[8px]">
-                        <Image
-                          src={assetUrl("/Images/hero/dot.svg")}
-                          alt=""
-                          width={8}
-                          height={8}
-                          className="size-[8px] shrink-0"
-                        />
-                        <p className="text-[14px] leading-[20px] font-normal text-[#F7F7F7] sm:text-[18px] min-[1024px]:whitespace-nowrap">
-                          {item}
+                      <div
+                        key={item.title}
+                        className="flex items-start gap-[12px] border-l-[3px] border-[#ED1D23] bg-white/5 py-[10px] pr-[16px] pl-[14px]"
+                      >
+                        <p className="text-[14px] leading-[22px] font-normal text-[#F7F7F7] sm:text-[16px] sm:leading-[24px]">
+                          <span className="font-bold text-white">{item.title}</span>{" "}
+                          {item.text}
                         </p>
                       </div>
                     ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DeferredGoogleTagManager from "@/components/DeferredGoogleTagManager";
 import { assetUrl } from "@/lib/assetPrefix";
+import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 import "./globals.css";
@@ -8,10 +9,9 @@ import "./globals.css";
 const GTM_ID = "GTM-5SBMM86H";
 
 export const metadata: Metadata = {
-  title:
-    "Turnkey ecommerce warehouse construction Company – ecommerce warehouse contractor",
+  title: "E-Commerce Fulfillment Center Construction Company | Mekark",
   description:
-    "Leading Turnkey ecommerce Warehouse EPC & Turnkey ecommerce logistics warehouse Construction Company – ecommerce fulfilment center warehouse construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey ecommerce warehouse Contractor & Turnkey ecommerce fulfilment centre , distribution center warehouse construction Company",
+    "Premier ecommerce warehouse contractor in India. We build high-throughput fulfillment centers with multi-tier mezzanines, AGV floors & ESFR fire systems.",
   icons: {
     icon: assetUrl("/Mekark%20Favicon-32x32px.png"),
     shortcut: assetUrl("/Mekark%20Favicon-32x32px.png"),
@@ -44,6 +44,7 @@ export default function RootLayout({
         </noscript>
 
         {children}
+        <Footer />
 
         <ScrollToTopButton />
         <DeferredGoogleTagManager gtmId={GTM_ID} />
