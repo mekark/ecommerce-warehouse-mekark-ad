@@ -16,7 +16,6 @@ import { assetUrl } from "@/lib/assetPrefix";
 // extra padding inside the file; the rest use the default 34px height.
 const CLIENT_LOGOS = [
   { name: "VWU", src: "/Images/hero/clients/vwu.webp", scale: 1 },
-  { name: "Voltas", src: "/Images/hero/clients/voltas.webp", scale: 1.6 },
   { name: "TVS", src: "/Images/hero/clients/tvs.webp", scale: 1.6 },
   { name: "Tata Electronics", src: "/Images/hero/clients/tata.webp", scale: 1.6 },
   { name: "Schwing Stetter", src: "/Images/hero/clients/stetter.webp", scale: 1.6 },
@@ -28,8 +27,6 @@ const CLIENT_LOGOS = [
   { name: "NS Instruments", src: "/Images/hero/clients/nsi.webp", scale: 1 },
   { name: "MRF", src: "/Images/hero/clients/mrf.webp", scale: 1 },
   { name: "L&T", src: "/Images/hero/clients/lt.webp", scale: 1 },
-  { name: "Sanmar", src: "/Images/hero/clients/sanmar1.webp", scale: 1 },
-  { name: "Sanmar Chemicals", src: "/Images/hero/clients/sanmar2.webp", scale: 1 },
   { name: "LA Freightlift", src: "/Images/hero/clients/laf.webp", scale: 1.2 },
   { name: "Komatsu", src: "/Images/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
