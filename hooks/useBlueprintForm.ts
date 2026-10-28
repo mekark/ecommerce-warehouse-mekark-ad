@@ -11,10 +11,9 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const HAS_LETTER_REGEX = /\p{L}/u;
 
 export const SQFT_OPTIONS = [
-  "10,000 - 20,000",
-  "20,000 - 30,000",
-  "30,000 - 50,000",
-  "50,000+",
+  "Below 30,000 Sq.ft",
+  "30,000 - 2,00,000 Sq.ft",
+  "Above 2,00,000 Sq.ft",
 ];
 
 export type BlueprintFormValues = {
