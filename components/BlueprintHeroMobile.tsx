@@ -39,7 +39,7 @@ const STATS = [
     suffixClass: "text-[#C4161C]",
   },
   {
-    value: "175",
+    value: "250",
     suffix: "+",
     label: "Engineering Team",
     suffixClass: "text-[#C4161C]",

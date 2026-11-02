@@ -41,7 +41,7 @@ const STATS = [
   },
   { value: "40,000 ", suffix: "MT", label: "Annual Production", width: "" },
   {
-    value: "175",
+    value: "250",
     suffix: "+",
     label: "Engineering Team",
     width: "w-[170.667px]",
