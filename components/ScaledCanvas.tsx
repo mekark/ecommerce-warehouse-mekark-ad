@@ -13,9 +13,9 @@ type ScaledCanvasProps = {
  * viewport, so desktop screens always show the Figma frame proportionally.
  * Below 1024px children render unscaled (they own their responsive layout).
  *
- * Scaling is pure CSS (`zoom` driven by the `--cw` viewport-width variable set
- * by the inline script in the root layout), so the very first paint is already
- * at the final scale — no zoomed-in flash before hydration.
+ * Scaling is pure CSS (`zoom: tan(atan2(100vw, designWidth))`, see globals.css),
+ * so there is no JavaScript involved and the very first paint is already at the
+ * final scale.
  */
 export default function ScaledCanvas({
   designWidth,

@@ -7,10 +7,15 @@ import { useBlueprintForm } from "@/hooks/useBlueprintForm";
 const fieldBase =
   "w-full rounded-[8px] border-[1.101px] border-solid bg-[#F0F0F0] text-[12px] leading-[normal] text-black outline-none placeholder:text-[#757575] focus:border-[#C4161C]";
 
-const labelClass = "text-[14px] font-bold leading-[normal] text-white";
+const labelClass =
+  "sr-only text-[14px] font-bold leading-[normal] text-white sm:not-sr-only";
 
 /** The hero's "Request Your Project Blueprint" card — the only interactive part of the hero. */
-export default function HeroBlueprintForm() {
+export default function HeroBlueprintForm({
+  className = "",
+}: {
+  className?: string;
+}) {
   const {
     values,
     errors,
@@ -24,10 +29,10 @@ export default function HeroBlueprintForm() {
     error ? "border-[#C4161C]" : "border-[#E2E2E2]";
 
   const inputClass = (error?: string) =>
-    `${fieldBase} ${borderColor(error)} px-[19.101px] py-[15.101px]`;
+    `${fieldBase} ${borderColor(error)} px-[18px] py-[14px] sm:px-[19.101px] sm:py-[15.101px]`;
 
   const selectClass = (error?: string, hasValue?: boolean) =>
-    `${fieldBase} ${borderColor(error)} appearance-none cursor-pointer pl-[23.101px] pr-[36.101px] py-[15.101px] tracking-[0.3303px] ${
+    `${fieldBase} ${borderColor(error)} appearance-none cursor-pointer pl-[22px] pr-[22px] py-[14px] sm:pl-[23.101px] sm:pr-[36.101px] sm:py-[15.101px] tracking-[0.3303px] ${
       hasValue ? "text-black" : "text-[#757575]"
     }`;
 
@@ -39,13 +44,13 @@ export default function HeroBlueprintForm() {
     ) : null;
 
   return (
-    <div className="flex w-full max-w-[659px] shrink-0 flex-col items-center gap-[26px] self-center rounded-[31.931px] bg-white/10 px-5 py-[32px] shadow-[0px_26.428px_88.092px_0px_rgba(0,0,0,0.45)] backdrop-blur-[15px] sm:px-[50px] sm:py-[44px] min-[1024px]:mt-[1.08px] min-[1024px]:w-[659px]">
-      <div className="flex w-full max-w-[364px] flex-col items-start gap-[6px] sm:max-w-full sm:items-center sm:text-center">
-        <h3 className="w-full text-[22px] leading-[normal] font-extrabold text-white sm:text-[24px]">
+    <div className={`flex w-full max-w-[659px] shrink-0 flex-col items-center gap-[16px] self-center rounded-[24px] bg-white/10 px-5 py-[24px] shadow-[0px_26.428px_88.092px_0px_rgba(0,0,0,0.45)] backdrop-blur-[15px] sm:gap-[26px] sm:rounded-[31.931px] sm:px-[50px] sm:py-[44px] min-[1024px]:mt-[1.08px] min-[1024px]:w-[659px] ${className}`}>
+      <div className="flex w-full max-w-[364px] flex-col items-center gap-[6px] text-center sm:max-w-full">
+        <h3 className="w-full text-[19px] leading-[normal] font-extrabold text-white sm:text-[24px]">
           Plan Your E-Commerce Fulfillment Center
         </h3>
         <div className="flex w-full max-w-[349.431px] flex-col items-center justify-center sm:max-w-full sm:items-center">
-          <p className="w-full max-w-[337px] text-[14px] sm:max-w-full leading-[normal] font-medium text-white">
+          <p className="w-full max-w-[337px] text-[12px] sm:max-w-full sm:text-[14px] leading-[normal] font-medium text-white">
             Get a custom structural layout optimized for sorting, mezzanines &amp; rapid dispatch.
           </p>
         </div>
@@ -54,12 +59,12 @@ export default function HeroBlueprintForm() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="flex w-full flex-col items-center gap-[26px]"
+        className="flex w-full flex-col items-center gap-[16px] sm:gap-[26px]"
       >
-        <div className="flex w-full flex-col items-start">
+        <div className="flex w-full flex-col items-start gap-[12px] sm:gap-0">
           {/* ROW 1 */}
-          <div className="flex w-full flex-col gap-0 sm:flex-row sm:items-center sm:gap-[35px]">
-            <div className="flex w-full flex-col items-start gap-[7px] sm:w-[262.202px]">
+          <div className="flex w-full flex-col gap-[12px] sm:flex-row sm:items-center sm:gap-[35px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[7px] sm:w-[262.202px]">
               <label htmlFor="bh-name" className={labelClass}>
                 Full Name<span className="text-[#ED1D23]">*</span>
               </label>
@@ -75,7 +80,7 @@ export default function HeroBlueprintForm() {
               {errorText(errors.name)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-location" className={labelClass}>
                 Project Location<span className="text-[#ED1D23]">*</span>
               </label>
@@ -93,8 +98,8 @@ export default function HeroBlueprintForm() {
           </div>
 
           {/* ROW 2 */}
-          <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[35.237px]">
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+          <div className="flex w-full flex-col gap-[12px] sm:flex-row sm:items-center sm:gap-[35.237px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-phone" className={labelClass}>
                 Mobile Number<span className="text-[#ED1D23]">*</span>
               </label>
@@ -112,7 +117,7 @@ export default function HeroBlueprintForm() {
               {errorText(errors.phoneNumber)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-email" className={labelClass}>
                 Email Address<span className="text-[#ED1D23]">*</span>
               </label>
@@ -130,8 +135,8 @@ export default function HeroBlueprintForm() {
           </div>
 
           {/* ROW 3 */}
-          <div className="flex w-full flex-col sm:flex-row sm:items-center sm:gap-[37px]">
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+          <div className="flex w-full flex-col gap-[12px] sm:flex-row sm:items-center sm:gap-[37px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-industry" className={labelClass}>
                 Industry Type<span className="text-[#ED1D23]">*</span>
               </label>
@@ -147,7 +152,7 @@ export default function HeroBlueprintForm() {
               {errorText(errors.industry)}
             </div>
 
-            <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px] sm:w-[261.339px]">
+            <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px] sm:w-[261.339px]">
               <label htmlFor="bh-sqft" className={labelClass}>
                 Project Sq. Ft<span className="text-[#ED1D23]">*</span>
               </label>
@@ -166,7 +171,7 @@ export default function HeroBlueprintForm() {
           </div>
 
           {/* ROW 4 */}
-          <div className="flex w-full flex-col items-start gap-[6.607px] pt-[14px]">
+          <div className="flex w-full flex-col items-start gap-0 sm:gap-[6.607px] pt-0 sm:pt-[14px]">
             <label htmlFor="bh-details" className={labelClass}>
               Requirement Details<span className="text-[#ED1D23]">*</span>
             </label>
@@ -176,13 +181,13 @@ export default function HeroBlueprintForm() {
               placeholder="Enter Requirement Details"
               value={values.details}
               onChange={handleChange}
-              className={`${fieldBase} ${borderColor(errors.details)} h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
+              className={`${fieldBase} ${borderColor(errors.details)} h-[46px] sm:h-[82.6px] resize-none rounded-[8.809px] pt-[15.101px] pr-[36.101px] pb-[15.101px] pl-[23.101px]`}
             />
             {errorText(errors.details)}
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center gap-[14px]">
+        <div className="flex w-full flex-col items-center gap-[12px] sm:gap-[14px]">
           {statusMessage && (
             <p className="w-full rounded-[8px] border border-red-200 bg-red-50 px-3 py-2 text-[12px] font-medium text-red-700">
               {statusMessage}
@@ -192,7 +197,7 @@ export default function HeroBlueprintForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-[63.867px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[40px] py-[20px] text-center text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex h-[48px] w-full items-center justify-center rounded-[9px] bg-[#C4161C] px-[24px] text-center text-[14px] sm:h-[63.867px] sm:px-[40px] sm:py-[20px] sm:text-[18px] leading-[normal] font-bold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isSubmitting ? "Submitting..." : "Request an Estimate →"}
           </button>

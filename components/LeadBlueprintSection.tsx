@@ -1,20 +1,22 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { manrope } from "@/lib/fonts";
 import ScaledCanvas from "@/components/ScaledCanvas";
 import {
   BlueprintForm,
-  MobileBlueprintForm,
 } from "@/components/LeadBlueprintForms";
+import OfficesDirectory from "@/components/OfficesDirectory";
 import { assetUrl } from "@/lib/assetPrefix";
+import {
+  PHONE_HREF,
+  QUOTE_FORM_ID,
+  WHATSAPP_MESSAGE,
+  WHATSAPP_NUMBER,
+} from "@/components/heroData";
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 760;
+const DESIGN_HEIGHT = 900;
 
-const WHATSAPP_NUMBER = "919790924754";
-const WHATSAPP_MESSAGE =
-  "Hello Mekark, I would like to discuss about my warehouse construction project.";
-const PHONE_NUMBER = "9790924754";
 const PHONE_DISPLAY = "+91 97909 24754";
 
 const INCLUDES = [
@@ -26,7 +28,7 @@ const INCLUDES = [
 
 function Title() {
   return (
-    <h2 className="text-[40px] leading-[1.05] font-extrabold tracking-[-1.5px] text-white sm:text-[52px] min-[1024px]:w-[712px] min-[1024px]:text-[66px]! min-[1024px]:leading-[65px]! min-[1024px]:tracking-[-2.6667px]!">
+    <h2 className="text-[40px] leading-[1.05] font-extrabold tracking-[-1.5px] text-white sm:text-[52px] lg:w-[712px] lg:text-[66px]! lg:leading-[65px]! lg:tracking-[-2.6667px]!">
       Get Your <span className="text-[#ED2024]">Warehouse Project</span>{" "}
       Blueprint
     </h2>
@@ -35,13 +37,16 @@ function Title() {
 
 function Includes() {
   return (
-    <ul className="flex w-full flex-col gap-[18.667px] pt-[12.147px]">
+    <ul className="grid w-full grid-cols-2 gap-2 pt-1 sm:gap-3 sm:pt-2 lg:gap-[14px]">
       {INCLUDES.map((item) => (
-        <li key={item} className="flex w-full items-center gap-[16px]">
-          <span className="flex size-[37.333px] shrink-0 items-center justify-center rounded-[18.667px] bg-[rgba(196,22,28,0.5)] text-[17.333px] leading-[normal] font-semibold text-[#F9F9F9]">
+        <li
+          key={item}
+          className="flex items-center gap-2 rounded-[12px] border border-solid border-white/10 bg-white/[0.06] px-2.5 py-2 sm:gap-3 sm:rounded-[14px] sm:px-3.5 sm:py-2.5 backdrop-blur-[2px] lg:gap-3 lg:rounded-[16px] lg:px-3.5 lg:py-[14px]"
+        >
+          <span className="flex size-[18px] shrink-0 items-center justify-center rounded-full bg-[#C4161C] text-[10px] leading-none font-bold text-white sm:size-[24px] sm:text-[12px] lg:size-[30px] lg:text-[14px]">
             ✓
           </span>
-          <span className="text-[16px] leading-[normal] font-semibold text-white sm:text-[20px] min-[1024px]:whitespace-nowrap">
+          <span className="text-[12px] leading-[1.25] font-semibold text-white sm:text-[15px] sm:leading-[1.3] lg:text-[16px]">
             {item}
           </span>
         </li>
@@ -50,108 +55,83 @@ function Includes() {
   );
 }
 
-function ContactCards() {
-  const cardBase =
-    "relative flex w-full items-center rounded-[29.333px] border-[1.333px] border-solid border-black/5 bg-[#212121]";
-
-  return (
-    <div className="flex w-full flex-col gap-[21.333px] min-[1024px]:w-[593px]">
-      <a href={`tel:${PHONE_NUMBER}`} className={`${cardBase} h-[120px]`}>
-        <span className="absolute top-1/2 left-[26.67px] flex size-[64px] -translate-y-1/2 items-center justify-center rounded-[24px] bg-[#CC000A]">
-          <Image
-            src={assetUrl("/Images/lead/phone.svg")}
-            alt=""
-            width={26}
-            height={26}
-            className="size-[26px]"
-          />
-        </span>
-
-        <span className="absolute top-1/2 left-[112px] flex -translate-y-1/2 flex-col items-start">
-          <span className="text-[16px] leading-[21.333px] font-bold text-[#A9A9A9] uppercase">
-            Phone
-          </span>
-          <span className="text-[21.333px] leading-[32px] font-extrabold whitespace-nowrap text-white">
-            {PHONE_DISPLAY}
-          </span>
-        </span>
-
-        <Image
-          src={assetUrl("/Images/lead/arrow.svg")}
-          alt=""
-          width={27}
-          height={26}
-          className="absolute top-[45.13px] right-[26.67px] h-[26px] w-[27px]"
-        />
-      </a>
-
-      <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
-        target="_blank"
-        rel="noreferrer"
-        className={`${cardBase} gap-[21.333px] p-[28px]`}
-      >
-        <span className="flex size-[64px] shrink-0 items-center justify-center rounded-[24px] bg-[#CC000A]">
-          <Image
-            src="/Images/lead/wa.webp"
-            alt=""
-            width={39}
-            height={39}
-            className="size-[38.667px] object-cover"
-          />
-        </span>
-
-        <span className="text-[22px] leading-[27.46px] font-bold whitespace-nowrap text-white sm:text-[26px]">
-          WhatsApp Us Now
-        </span>
-
-        <span className="flex flex-1 justify-end">
-          <Image
-            src={assetUrl("/Images/lead/arrow.svg")}
-            alt=""
-            width={27}
-            height={26}
-            className="h-[26px] w-[27px]"
-          />
-        </span>
-      </a>
-    </div>
-  );
-}
-
-function MobileContactCard({
+function ContactCard({
   href,
   external,
+  eyebrow,
+  title,
+  titleClass,
   icon,
-  children,
 }: {
   href: string;
   external?: boolean;
+  eyebrow?: string;
+  title: string;
+  titleClass: string;
   icon: ReactNode;
-  children: ReactNode;
 }) {
   return (
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-      className="flex w-full items-center gap-[16px] rounded-[20px] border border-solid border-black/5 bg-[#212121] px-[16px] py-[10px]"
+      className="flex items-center gap-4 rounded-[20px] border border-solid border-black/5 bg-[#212121] px-4 py-2.5 sm:h-[84px] sm:min-w-[260px] sm:flex-1 sm:rounded-[22px] sm:px-5 sm:py-0 lg:h-[104px] lg:min-w-0 lg:rounded-[26px] lg:px-6"
     >
-      <span className="flex size-[40px] shrink-0 flex-col items-center justify-center rounded-[8px] bg-[#CC000A]">
+      <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#CC000A] sm:size-12 sm:rounded-[16px] lg:size-14 lg:rounded-[18px]">
         {icon}
       </span>
-      <span className="flex min-w-0 flex-1 flex-col items-start gap-[2px]">
-        {children}
+      <span className="flex min-w-0 flex-col gap-0.5 sm:gap-0">
+        {eyebrow && (
+          <span className="text-[10px] leading-4 font-bold text-[#A9A9A9] uppercase sm:text-[13px] sm:leading-[18px] lg:text-[15px] lg:leading-[20px]">
+            {eyebrow}
+          </span>
+        )}
+        <span className={`text-white ${titleClass}`}>{title}</span>
       </span>
-      <span className="flex h-[28px] w-[24px] shrink-0 items-center justify-center">
-        <Image
-          src={assetUrl("/Images/lead/m-arrow.svg")}
-          alt=""
-          width={24}
-          height={26}
-          className="h-[26px] w-[24px]"
-        />
-      </span>
+      <Image
+        src={assetUrl("/Images/lead/arrow.svg")}
+        alt=""
+        width={27}
+        height={26}
+        className="ml-auto h-auto w-6 shrink-0 sm:w-5 lg:w-6"
+      />
     </a>
+  );
+}
+
+function ContactCards() {
+  return (
+    <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-5 lg:flex-nowrap">
+      <ContactCard
+        href={PHONE_HREF}
+        eyebrow="Call Now"
+        title={PHONE_DISPLAY}
+        titleClass="text-sm leading-6 font-extrabold sm:text-[17px] lg:text-[21px] lg:leading-7"
+        icon={
+          <Image
+            src={assetUrl("/Images/lead/phone.svg")}
+            alt=""
+            width={27}
+            height={27}
+            className="size-5 lg:size-6"
+          />
+        }
+      />
+      <ContactCard
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
+        external
+        title="WhatsApp Us Now"
+        titleClass="text-sm leading-6 font-bold sm:text-[19px] lg:text-[23px] lg:leading-7"
+        icon={
+          <Image
+            src="/Images/lead/wa.webp"
+            alt=""
+            width={39}
+            height={39}
+            className="size-[30px] lg:size-9"
+          />
+        }
+      />
+    </div>
   );
 }
 
@@ -174,132 +154,42 @@ function Background() {
 
 export default function LeadBlueprintSection() {
   return (
-    <section className={`${manrope.className} w-full bg-white`}>
-      {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
-        <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
-          <div
-            className="relative w-[1920px] overflow-hidden bg-[#0A0A0A]"
-            style={{ height: DESIGN_HEIGHT }}
-          >
-            <Background />
-
-            <div className="absolute top-[calc(50%-0.77px)] left-[calc(50%-415.33px)] flex w-[593.333px] -translate-x-1/2 -translate-y-1/2 flex-col items-start gap-[19.867px]">
-              <div className="w-full pb-[0.92px]">
-                <Title />
-              </div>
-              <Includes />
-              <ContactCards />
-            </div>
-
-            <div
-              data-enquiry-form
-              className="absolute top-[calc(50%-0.5px)] left-[1068px] -translate-y-1/2"
-            >
-              <BlueprintForm />
-            </div>
-          </div>
-        </ScaledCanvas>
-      </div>
-
-      {/* MOBILE (below 640px) */}
-      <div className="relative overflow-hidden bg-[#090909] sm:hidden">
-        <div className="absolute top-0 left-0 h-[601px] w-full">
-          <Image
-            src="/Images/lead/m-bg.webp"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
-        <div className="absolute top-0 left-0 h-[1108px] w-full bg-gradient-to-b from-transparent to-black to-[54.327%]" />
-        <div className="absolute top-[-61px] left-[180px] size-[274px] rounded-full bg-[rgba(228,0,21,0.3)] opacity-[0.93] blur-[61.667px]" />
-
-        <div className="relative z-10 mx-auto flex w-full max-w-[390px] flex-col items-center gap-[26px] px-[20px] pt-[56px] pb-[40px]">
-          <div className="flex w-full flex-col gap-[12px] px-[20px]">
-            <h2 className="text-[28px] leading-[34px] font-extrabold text-white">
-              Get Your <span className="text-[#ED1D23]">Warehouse Project</span>{" "}
-              Blueprint
-            </h2>
-
-            {INCLUDES.map((item) => (
-              <div key={item} className="flex w-full items-center gap-[16px]">
-                <span className="flex size-[20px] shrink-0 items-center justify-center rounded-[10px] bg-[rgba(196,22,28,0.5)] text-[9.286px] leading-[normal] font-semibold text-[#F9F9F9]">
-                  ✓
-                </span>
-                <span className="text-[14px] leading-[normal] font-medium whitespace-nowrap text-[#F4F4F4]">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex w-full flex-col gap-[12px]">
-            <MobileContactCard
-              href={`tel:${PHONE_NUMBER}`}
-              icon={
-                <Image
-                  src={assetUrl("/Images/lead/m-phone.svg")}
-                  alt=""
-                  width={24}
-                  height={24}
-                  className="size-[24px]"
-                />
-              }
-            >
-              <span className="text-[10px] leading-[16px] font-bold whitespace-nowrap text-[#A9A9A9] uppercase">
-                Call Now
-              </span>
-              <span className="w-full text-[14px] leading-[24px] font-extrabold text-white">
-                {PHONE_DISPLAY}
-              </span>
-            </MobileContactCard>
-
-            <MobileContactCard
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
-              external
-              icon={
-                <Image
-                  src="/Images/lead/wa.webp"
-                  alt=""
-                  width={30}
-                  height={30}
-                  className="size-[30px] object-cover"
-                />
-              }
-            >
-              <span className="w-full text-[14px] leading-[24px] font-bold text-white">
-                WhatsApp Us Now
-              </span>
-            </MobileContactCard>
-          </div>
-
-          <div data-enquiry-form className="w-full">
-            <MobileBlueprintForm />
-          </div>
-        </div>
-      </div>
-
-      {/* TABLET (640px - 1023px) */}
-      <div className="hidden sm:max-[1023px]:block">
-        <div className="relative overflow-hidden bg-[#0A0A0A]">
+    <section
+      id={QUOTE_FORM_ID}
+      className={`${manrope.className} w-full bg-white`}
+    >
+      {/* One responsive layout: stacked column below 1024px; on desktop the exact
+          Figma frame, scaled to the viewport. */}
+      <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
+        <div
+          className="relative overflow-hidden bg-[#0A0A0A] lg:w-[1920px]"
+          style={{ "--h": DESIGN_HEIGHT } as CSSProperties}
+        >
           <Background />
 
-          <div className="relative z-10 mx-auto flex max-w-[640px] flex-col gap-8 px-5 py-12 sm:px-8 sm:py-16">
-            <div className="flex flex-col gap-5">
-              <Title />
-              <Includes />
-              <ContactCards />
+          <div className="relative z-10 mx-auto flex max-w-[640px] flex-col gap-8 px-5 py-12 sm:px-8 sm:py-16 lg:static lg:mx-0 lg:block lg:h-[calc(var(--h)*1px)] lg:max-w-none lg:p-0">
+            {/* Phone/tablet: title + checklist, then the form, then call/WhatsApp cards and
+                offices (the left column is "contents" so its children can be reordered).
+                Desktop: left column and form sit side by side in the Figma frame. */}
+            <div className="contents lg:absolute lg:top-1/2 lg:left-[150px] lg:flex lg:w-[860px] lg:-translate-y-1/2 lg:flex-col lg:gap-[19.867px]">
+              <div className="order-1 flex flex-col gap-5 lg:order-none lg:gap-[19.867px]">
+                <Title />
+                <Includes />
+              </div>
+              <div className="order-3 lg:order-none">
+                <ContactCards />
+              </div>
+              <div className="order-4 lg:order-none">
+                <OfficesDirectory />
+              </div>
             </div>
 
-            <div data-enquiry-form>
+            <div className="order-2 lg:absolute lg:top-1/2 lg:left-[1068px] lg:order-none lg:-translate-y-1/2">
               <BlueprintForm />
             </div>
           </div>
         </div>
-      </div>
+      </ScaledCanvas>
     </section>
   );
 }

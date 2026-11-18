@@ -12,11 +12,9 @@ const VIEW_ALL_HREF = "https://www.mekark.com/projects/completed-projects";
 type Tile = {
   src: string;
   alt: string;
-  /** Rounded corner of the tile in the Figma grid (only outer-style corners are rounded) */
+  /** Rounded corner of the tile in the Figma grid (desktop only; outer-style corners) */
   radiusClass: string;
-  /** Tailwind classes positioning the <img> inside the tile (Figma crop) */
-  imageClass: string;
-  /** Extra classes for mobile/tablet object-cover crop (e.g. slight zoom) */
+  /** Extra classes for the phone object-cover crop (e.g. slight zoom) */
   coverClass?: string;
 };
 
@@ -25,51 +23,42 @@ const TILES: Tile[] = [
   {
     src: "/Images/gallery/p1.webp",
     alt: "Modern PEB warehouse with striped glazed facade",
-    radiusClass: "rounded-tl-[32px]",
-    imageClass: "absolute top-0 left-[0.02%] h-[101.74%] w-[101.65%] max-w-none",
+    radiusClass: "lg:rounded-tl-[32px]",
   },
   {
     src: "/Images/gallery/p2.webp",
     alt: "Aerial view of a large white warehouse with loading docks",
-    radiusClass: "rounded-tr-[32px]",
-    imageClass: "absolute top-[-2.5%] left-[-5.01%] size-[104.97%] max-w-none",
+    radiusClass: "lg:rounded-tr-[32px]",
   },
   {
     src: "/Images/gallery/p3-red-white-warehouse.webp",
     alt: "Large industrial warehouse with red and white cladding and trucks at the loading docks",
-    radiusClass: "rounded-bl-[32px]",
-    imageClass:
-      "absolute top-[-2.74%] left-[-3.73%] h-[110.81%] w-[110.82%] max-w-none",
+    radiusClass: "lg:rounded-bl-[32px]",
   },
   {
     src: "/Images/gallery/p4.webp",
     alt: "Blue PEB warehouse on an industrial estate",
-    radiusClass: "rounded-br-[32px]",
-    imageClass: "absolute inset-0 size-full max-w-none object-cover",
+    radiusClass: "lg:rounded-br-[32px]",
   },
   {
     src: "/Images/gallery/p5-green-beige-warehouse.webp",
     alt: "Aerial view of a long green and beige distribution warehouse with loading bays",
-    radiusClass: "rounded-bl-[32px]",
-    imageClass: "absolute inset-0 size-full max-w-none object-cover",
+    radiusClass: "lg:rounded-bl-[32px]",
   },
   {
     src: "/Images/gallery/p6.webp",
     alt: "Steel warehouse with blue trim and loading bays",
-    radiusClass: "rounded-br-[32px]",
-    imageClass:
-      "absolute top-[-10.66%] left-[-10.82%] h-[110.75%] w-[110.81%] max-w-none",
-    /** Mobile-only: slight zoom + shift left */
-    coverClass: "scale-[1.18] -translate-x-[6%]",
+    radiusClass: "lg:rounded-br-[32px]",
+    /** Phone-only: slight zoom + shift left */
+    coverClass: "max-sm:scale-[1.18] max-sm:-translate-x-[6%]",
   },
 ];
 
 /** Shuffle image content; keep corner radii fixed to grid slots. */
 function shuffleTiles(tiles: Tile[]): Tile[] {
-  const images = tiles.map(({ src, alt, imageClass, coverClass }) => ({
+  const images = tiles.map(({ src, alt, coverClass }) => ({
     src,
     alt,
-    imageClass,
     coverClass,
   }));
   for (let i = images.length - 1; i > 0; i--) {
@@ -82,32 +71,11 @@ function shuffleTiles(tiles: Tile[]): Tile[] {
   }));
 }
 
-function Heading() {
-  return (
-    <div className="flex w-full flex-col gap-[13px] font-bold min-[1024px]:w-[509px]">
-      <p className="text-[14px] leading-[21.304px] tracking-[1.5978px] text-[#ED1D23] uppercase min-[1024px]:text-[16px]">
-        our work
-      </p>
-      <h2 className="text-[40px] leading-[1.05] text-[#0F172A] sm:text-[52px] min-[1024px]:text-[66px]! min-[1024px]:leading-[60px]!">
-        Projects <span className="text-[#ED1D23]">Gallery</span>
-      </h2>
-    </div>
-  );
-}
-
-function ViewAllButton({ className }: { className: string }) {
-  return (
-    <a
-      href={VIEW_ALL_HREF}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`flex items-center justify-center bg-[#C4161C] text-center font-extrabold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] ${className}`}
-    >
-      View All →
-    </a>
-  );
-}
-
+/**
+ * One gallery for every screen size (previously three copies).
+ * Phones: 1 column. Tablet: 2 columns plus a "View All" button.
+ * 1024px+: Figma frame (1920 wide, scaled) with a 2 x 3 grid and rounded outer corners.
+ */
 export default function ProjectsGallerySection() {
   const [tiles, setTiles] = useState(TILES);
 
@@ -117,89 +85,48 @@ export default function ProjectsGallerySection() {
 
   return (
     <section className={`${manrope.className} w-full bg-[#F9F6F7]`}>
-      {/* DESKTOP: exact Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
-        <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
-          <div className="flex w-[1920px] flex-col items-start gap-[52px] bg-[#F9F6F7] px-[80px] py-[52px]">
-            <Heading />
-
-            <div className="grid h-[1515.5px] w-full grid-cols-2 grid-rows-3 gap-[25px]">
-              {tiles.map((tile) => (
-                <div
-                  key={tile.src}
-                  className={`relative overflow-hidden bg-[#D9D9D9] ${tile.radiusClass}`}
-                >
-                  <Image
-                    src={tile.src}
-                    alt={tile.alt}
-                    width={1672}
-                    height={941}
-                    sizes="46vw"
-                    className={tile.imageClass}
-                  />
-                </div>
-              ))}
-            </div>
+      <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
+        <div className="flex w-full flex-col gap-6 bg-[#F9F6F7] px-5 py-8 sm:gap-8 sm:px-10 sm:py-16 lg:w-[1920px] lg:items-start lg:gap-[52px] lg:px-[80px] lg:py-[52px]">
+          <div className="flex w-full flex-col gap-[8px] font-bold sm:gap-[13px] lg:w-[509px]">
+            <p className="text-[12px] leading-[18px] tracking-[1.5978px] text-[#ED1D23] uppercase sm:text-[14px] sm:leading-[21.304px] lg:text-[16px]">
+              our work
+            </p>
+            <h2 className="text-[28px] leading-[32px] whitespace-nowrap text-[#0F172A] sm:text-[52px] sm:leading-[1.05] sm:whitespace-normal lg:text-[66px] lg:leading-[60px]">
+              Projects <span className="text-[#ED1D23]">Gallery</span>
+            </h2>
           </div>
-        </ScaledCanvas>
-      </div>
 
-      {/* MOBILE (below 640px) */}
-      <div className="flex flex-col gap-[24px] px-[20px] py-[32px] sm:hidden">
-        <div className="flex w-full flex-col gap-[8px] font-bold">
-          <p className="text-[12px] leading-[18px] tracking-[1.5978px] text-[#ED1D23] uppercase">
-            our work
-          </p>
-          <h2 className="text-[28px] leading-[32px] whitespace-nowrap text-[#0F172A]">
-            Projects <span className="text-[#ED1D23]">Gallery</span>
-          </h2>
-        </div>
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:h-[1515.5px] lg:grid-rows-3 lg:gap-[25px]">
+            {tiles.map((tile) => (
+              <div
+                key={tile.src}
+                className={`relative aspect-[1672/941] overflow-hidden rounded-[16px] bg-[#D9D9D9] lg:aspect-auto lg:rounded-none ${tile.radiusClass}`}
+              >
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  quality={70}
+                  sizes="(min-width: 1024px) 46vw, (min-width: 640px) 50vw, 58vw"
+                  className={`object-cover ${tile.coverClass ?? ""}`}
+                />
+              </div>
+            ))}
+          </div>
 
-        <div className="flex w-full flex-col gap-[16px]">
-          {tiles.map((tile) => (
-            <div
-              key={tile.src}
-              className="relative aspect-[1672/941] w-full overflow-hidden rounded-[16px] bg-[#D9D9D9]"
+          {/* tablet only, as in the previous layout */}
+          <div className="hidden justify-center sm:flex lg:hidden">
+            <a
+              href={VIEW_ALL_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center rounded-[8.809px] bg-[#C4161C] px-10 py-4 text-center text-[20px] font-extrabold whitespace-nowrap text-[#F5F5F5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)]"
             >
-              <Image
-                src={tile.src}
-                alt={tile.alt}
-                fill
-                quality={70}
-                // ~1x resolution on phones (58vw at 1.75 DPR -> 420w candidate)
-                sizes="(min-width: 640px) 1px, 58vw"
-                className={`object-cover ${tile.coverClass ?? ""}`}
-              />
-            </div>
-          ))}
+              View All →
+            </a>
+          </div>
         </div>
-      </div>
-
-      {/* TABLET (640px - 1023px) */}
-      <div className="hidden px-10 py-16 sm:max-[1023px]:block">
-        <Heading />
-
-        <div className="mt-8 grid grid-cols-2 gap-4">
-          {tiles.map((tile) => (
-            <div
-              key={tile.src}
-              className="relative aspect-[1672/941] overflow-hidden rounded-[16px] bg-[#D9D9D9]"
-            >
-              <Image
-                src={tile.src}
-                alt={tile.alt}
-                fill
-                sizes="50vw"
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <ViewAllButton className="rounded-[8.809px] px-10 py-4 text-[20px]" />
-        </div>
-      </div>
+      </ScaledCanvas>
     </section>
   );
 }

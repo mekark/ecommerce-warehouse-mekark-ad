@@ -1,5 +1,5 @@
 import {
-  PHONE_NUMBER,
+  PHONE_HREF,
   WHATSAPP_MESSAGE,
   WHATSAPP_NUMBER,
 } from "@/components/heroData";
@@ -21,10 +21,10 @@ const TOOLTIP =
 
 export default function FloatingContact() {
   return (
-    <div className="fixed right-4 bottom-5 z-[60] flex flex-col gap-3 sm:right-6 sm:bottom-6">
+    <div className="fixed right-4 bottom-5 z-[60] hidden flex-col gap-3 md:flex sm:right-6 sm:bottom-6">
       {/* Call us */}
       <a
-        href={`tel:${PHONE_NUMBER}`}
+        href={PHONE_HREF}
         aria-label="Call us"
         className={`${BUTTON} bg-[#c4161c] shadow-[0_14px_30px_-12px_rgba(196,22,28,0.8)]`}
       >

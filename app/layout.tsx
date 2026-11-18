@@ -3,6 +3,7 @@ import DeferredGoogleTagManager from "@/components/DeferredGoogleTagManager";
 import { assetUrl } from "@/lib/assetPrefix";
 import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import MobileStickyBar from "@/components/MobileStickyBar";
 
 import "./globals.css";
 
@@ -26,13 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col">
-        {/* Sets --cw before first paint so scaled desktop sections never flash zoomed-in */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var d=document.documentElement;function u(){d.style.setProperty('--cw',d.clientWidth)}u();addEventListener('resize',u)})();`,
-          }}
-        />
+      <body className="min-h-full flex flex-col max-md:pb-16">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -46,6 +41,7 @@ export default function RootLayout({
         {children}
         <Footer />
 
+        <MobileStickyBar />
         <ScrollToTopButton />
         <DeferredGoogleTagManager gtmId={GTM_ID} />
       </body>

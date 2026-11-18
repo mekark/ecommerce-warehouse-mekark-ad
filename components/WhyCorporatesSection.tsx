@@ -73,141 +73,72 @@ function WarehouseImage({
   );
 }
 
-function Pillars({ desktop = false }: { desktop?: boolean }) {
-  if (!desktop) {
-    return (
-      <ol className="flex w-full flex-col gap-[2px]">
-        {PILLARS.map((pillar, index) => (
-          <li key={pillar.title} className="flex flex-col gap-[2px]">
-            {index > 0 && (
-              <span aria-hidden className="ml-[48px] block h-px bg-[#E4E4E4]" />
-            )}
-            <div className="flex items-start gap-[12px] py-[12px]">
-              <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-solid border-[#FFE2E2] bg-[#FEF2F2] text-[14px] leading-[19.61px] font-bold text-[#ED2024]">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="flex min-w-0 flex-col gap-[6px]">
-                <h3 className="text-[20px] leading-[22px] font-bold text-[#1A1A1A]">
-                  {pillar.title}
-                </h3>
-                <p className="text-[14px] leading-[20px] font-normal text-[#4A5565]">
-                  {pillar.description}
-                </p>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ol>
-    );
-  }
-
-  return (
-    <ol className="flex w-full flex-col">
-      {PILLARS.map((pillar, index) => (
-        <li key={pillar.title} className="flex flex-col">
-          {index > 0 && (
-            <span
-              aria-hidden
-              className="my-[18px] block h-[1.333px] w-[565.333px] bg-[#E4E4E4]"
-            />
-          )}
-          <div className="flex flex-col items-start">
-            <span className="flex h-[33.333px] w-[90.625px] items-center rounded-full border-[0.98px] border-solid border-[#FFE2E2] bg-[#FEF2F2] pl-[16.67px] text-[14px] leading-[19.608px] font-bold text-[#ED2024]">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 className="text-[24px] leading-[42.667px] font-bold text-[#1A1A1A]">
-              {pillar.title}
-            </h3>
-            <p className="text-[16px] leading-[26px] font-normal text-[#4A5565]">
-              {pillar.description}
-            </p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
+/**
+ * One "why choose us" section for every screen size (previously three copies).
+ * Phones/tablets: heading, photo, then the pillar list stacked.
+ * 1024px+: Figma frame (1920 wide, scaled): heading on top, photo pinned on the
+ * left while the pillar list scrolls on the right.
+ */
 export default function WhyCorporatesSection() {
   return (
     <section className={`${manrope.className} w-full bg-white`}>
-      {/* DESKTOP: Figma frame, scaled to the viewport */}
-      <div className="hidden min-[1024px]:block">
-        <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
-          <div className="relative w-[1920px] bg-white pt-[70.67px] pb-[139px]">
-            {/* heading at x 106.67; each line is kept whole, as in the Figma two-line heading */}
-            <div className="ml-[106.67px] flex w-[1016px] flex-col gap-[16px]">
-              <h2 className="text-[54px] leading-[60px] font-extrabold whitespace-nowrap text-[#0A0A0A]">
-                Why Online Retail Giants Choose Us for
-                <br />
-                <span className="text-[#ED1D23]">
-                  E-Commerce Warehouse Construction
-                </span>
-              </h2>
-              <p className="w-[1016px] text-[18px] leading-[26px] font-normal text-[#4A5565]">
-                {SUBTEXT}
-              </p>
+      <ScaledCanvas designWidth={DESIGN_WIDTH} minWidth={1024}>
+        <div className="relative flex w-full flex-col gap-5 bg-white px-5 py-6 sm:gap-8 sm:px-0 sm:py-16 lg:block lg:w-[1920px] lg:pt-[70.67px] lg:pb-[60px]">
+          {/* HEADING + INTRO (each desktop line is kept whole, as in the Figma two-line heading) */}
+          <div className="flex flex-col gap-3 sm:gap-4 sm:px-10 lg:ml-[106.67px] lg:w-[1016px] lg:gap-[16px] lg:px-0">
+            <h2 className="text-[28px] leading-[32px] font-extrabold text-[#030303] sm:text-[40px] sm:leading-[1.15] sm:text-[#0A0A0A] lg:text-[54px] lg:leading-[60px] lg:whitespace-nowrap">
+              Why Online Retail Giants Choose Us for{" "}
+              <br className="hidden lg:block" />
+              <span className="text-[25px] text-[#ED1D23] sm:text-[40px] lg:text-[54px] lg:whitespace-nowrap">
+                <span className="whitespace-nowrap">E-Commerce</span> Warehouse
+                Construction
+              </span>
+            </h2>
+            <p className="text-[14px] leading-[20px] font-normal text-[#4A5565] sm:text-[16px] sm:leading-[26px] lg:w-[1016px] lg:text-[18px]">
+              {SUBTEXT}
+            </p>
+          </div>
+
+          {/* PHOTO + PILLARS (the wrapper disappears below 1024px so they stack in the column above) */}
+          <div className="contents lg:mt-[28px] lg:flex lg:items-start">
+            {/* image (x 0, y 294.67) stays pinned while the list scrolls */}
+            <div className="sm:pr-10 lg:sticky lg:top-[60px] lg:mt-[8px] lg:w-[1024px] lg:shrink-0 lg:pr-0">
+              <WarehouseImage sizes="(min-width: 1024px) 54vw, (min-width: 640px) 94vw, 65vw" />
             </div>
 
-            {/* image (x 0, y 294.67) stays pinned while the list (x 1142.67, y 286.67) scrolls */}
-            <div className="mt-[28px] flex items-start">
-              <div className="sticky top-[60px] mt-[8px] w-[1024px] shrink-0">
-                <WarehouseImage sizes="54vw" />
-              </div>
-              <div className="ml-[118.67px] w-[666.67px] shrink-0">
-                <Pillars desktop />
-              </div>
+            <div className="sm:px-10 lg:ml-[118.67px] lg:w-[666.67px] lg:shrink-0 lg:px-0">
+              <ol className="flex w-full flex-col gap-[2px] lg:gap-0">
+                {PILLARS.map((pillar, index) => (
+                  <li
+                    key={pillar.title}
+                    className="flex flex-col gap-[2px] lg:gap-0"
+                  >
+                    {index > 0 && (
+                      <span
+                        aria-hidden
+                        className="ml-[48px] block h-px bg-[#E4E4E4] lg:my-[18px] lg:ml-0 lg:h-[1.333px] lg:w-[565.333px]"
+                      />
+                    )}
+                    <div className="flex items-start gap-[12px] py-[12px] lg:flex-col lg:gap-0 lg:py-0">
+                      <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-solid border-[#FFE2E2] bg-[#FEF2F2] text-[14px] leading-[19.61px] font-bold text-[#ED2024] lg:h-[33.333px] lg:w-[90.625px] lg:justify-start lg:border-[0.98px] lg:pl-[16.67px] lg:leading-[19.608px]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="flex min-w-0 flex-col gap-[6px] lg:gap-0">
+                        <h3 className="text-[20px] leading-[22px] font-bold text-[#1A1A1A] lg:text-[24px] lg:leading-[42.667px]">
+                          {pillar.title}
+                        </h3>
+                        <p className="text-[14px] leading-[20px] font-normal text-[#4A5565] lg:text-[16px] lg:leading-[26px]">
+                          {pillar.description}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
-        </ScaledCanvas>
-      </div>
-
-      {/* MOBILE (below 640px): Figma node 10578:14573 */}
-      <div className="flex flex-col gap-[20px] px-5 py-6 sm:hidden">
-        <div className="flex flex-col gap-[12px]">
-          <h2 className="text-[28px] leading-[32px] font-extrabold text-[#030303]">
-            Why Online Retail Giants Choose Us for{" "}
-            <span className="text-[25px] text-[#ED1D23]">
-              <span className="whitespace-nowrap">E-Commerce</span> Warehouse
-              Construction
-            </span>
-          </h2>
-          <p className="text-[14px] leading-[20px] font-normal text-[#4A5565]">
-            {SUBTEXT}
-          </p>
         </div>
-
-        <WarehouseImage
-          sizes="(min-width: 640px) 1px, 65vw"
-          quality={70}
-        />
-
-        <Pillars />
-      </div>
-
-      {/* TABLET (640px - 1023px) */}
-      <div className="hidden flex-col gap-8 py-16 sm:max-[1023px]:flex">
-        <div className="flex flex-col gap-4 px-10">
-          <h2 className="text-[40px] leading-[1.15] font-extrabold text-[#0A0A0A]">
-            Why Online Retail Giants Choose Us for{" "}
-            <span className="text-[#ED1D23]">
-              <span className="whitespace-nowrap">E-Commerce</span> Warehouse
-              Construction
-            </span>
-          </h2>
-          <p className="text-[16px] leading-[26px] font-normal text-[#4A5565]">
-            {SUBTEXT}
-          </p>
-        </div>
-
-        <div className="pr-10">
-          <WarehouseImage sizes="94vw" />
-        </div>
-
-        <div className="px-10">
-          <Pillars />
-        </div>
-      </div>
+      </ScaledCanvas>
     </section>
   );
 }

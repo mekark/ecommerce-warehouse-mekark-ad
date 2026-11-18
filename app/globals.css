@@ -17,6 +17,24 @@
   }
 }
 
+/* Native anchor scrolling for the "Request an Estimate" CTAs (#project-quote-form) */
+html {
+  scroll-padding-top: 24px;
+}
+
+/* phones: the hero header is fixed (44px), keep anchor targets clear of it */
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -71,11 +89,12 @@ select {
   }
 }
 
-/* Desktop Figma frames: scale to viewport width in pure CSS (no JS flash).
-   --cw (viewport width, unitless) is set by the inline script in layout.tsx. */
+/* Desktop Figma frames: scale to the viewport width in pure CSS, no JavaScript.
+   tan(atan2(100vw, W)) = 100vw / W as a unitless number, which zoom needs
+   (plain length / length division isn't supported in all browsers yet). */
 @media (min-width: 1024px) {
   .scaled-canvas {
     width: calc(var(--dw) * 1px);
-    zoom: calc(var(--cw, var(--dw)) / var(--dw));
+    zoom: tan(atan2(100vw, calc(var(--dw) * 1px)));
   }
 }

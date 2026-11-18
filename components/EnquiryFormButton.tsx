@@ -1,7 +1,5 @@
-"use client";
-
 import { ReactNode } from "react";
-import { useEnquiryRedirect } from "@/hooks/useEnquiryRedirect";
+import { QUOTE_FORM_ID } from "@/components/heroData";
 
 type EnquiryFormButtonProps = {
   children: ReactNode;
@@ -9,22 +7,20 @@ type EnquiryFormButtonProps = {
   showArrow?: boolean;
 };
 
+/**
+ * "Request an Estimate" CTA. A plain anchor to the lead form section, so it
+ * works before hydration and with JavaScript blocked. Smooth scrolling is
+ * native CSS (see globals.css).
+ */
 export default function EnquiryFormButton({
   children,
   className = "",
   showArrow = false,
 }: EnquiryFormButtonProps) {
-  const { isRedirecting, redirectToEnquiryForm } = useEnquiryRedirect();
-
   return (
-    <button
-      type="button"
-      onClick={redirectToEnquiryForm}
-      disabled={isRedirecting}
-      className={className}
-    >
+    <a href={`#${QUOTE_FORM_ID}`} className={className}>
       {children}
       {showArrow && <span className="ml-3 text-[22px]">→</span>}
-    </button>
+    </a>
   );
 }
