@@ -1,103 +1,75 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const UPSTREAM_ENDPOINT = "https://mekark-mail.onrender.com/api/enquiry-form";
+const UPSTREAM_ENDPOINT =
+  process.env.ENQUIRY_API_URL || "https://api.mekark.com/api/enquiry-form";
 
-function resolveUpstreamOrigin(request: NextRequest) {
-  const directOrigin = request.headers.get("origin");
+function fail(message: string, status: number) {
+  return NextResponse.json({ success: false, message }, { status });
+}
 
-  if (directOrigin) {
-    return directOrigin;
+function hostnameOf(value: string | null | undefined) {
+  if (!value) return undefined;
+  try {
+    return new URL(value).hostname;
+  } catch {
+    return undefined;
   }
-
-  const forwardedHost =
-    request.headers.get("x-forwarded-host") || request.headers.get("host");
-
-  const forwardedProto = request.headers.get("x-forwarded-proto") || "https";
-
-  if (forwardedHost) {
-    return `${forwardedProto}://${forwardedHost}`;
-  }
-
-  return new URL(request.url).origin;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const origin = request.headers.get("origin");
-    const referer = request.headers.get("referer");
+    const body = await request.json().catch(() => null);
 
-    if (!body.name || !body.phone) {
-      return NextResponse.json(
-        {
-          message: "Missing required fields",
-        },
-        {
-          status: 400,
-        },
-      );
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return fail("Invalid request. Please refresh the page and try again.", 400);
     }
 
-    const upstreamOrigin = resolveUpstreamOrigin(request);
+    if (!body.name || !body.phone) {
+      return fail("Please enter your name and phone number.", 400);
+    }
+
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
 
     const payload = {
       ...body,
       sourceDomain:
-        body.sourceDomain ||
-        (origin ? new URL(origin).hostname : undefined) ||
-        (referer ? new URL(referer).hostname : undefined),
-      sourceUrl:
-        body.sourceUrl ||
-        body.pageUrl ||
-        referer ||
-        origin ||
-        undefined,
+        body.sourceDomain || hostnameOf(origin) || hostnameOf(referer),
+      sourceUrl: body.sourceUrl || body.pageUrl || referer || origin || undefined,
     };
 
-    // FIRE & FORGET
     const response = await fetch(UPSTREAM_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: origin || upstreamOrigin,
+        ...(origin ? { Origin: origin } : {}),
         ...(referer ? { Referer: referer } : {}),
       },
       body: JSON.stringify(payload),
       cache: "no-store",
     });
 
-    const responseText = await response.text();
-
-    console.log("UPSTREAM STATUS:", response.status);
-    console.log("UPSTREAM RESPONSE:", responseText);
-
-    if (!response.ok) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Upstream failed",
-        },
-        {
-          status: 500,
-        },
+    if (response.status >= 500) {
+      return fail(
+        "Our server is having trouble right now. Please try again in a moment or call us directly.",
+        502,
       );
     }
 
-    return NextResponse.json({
-      success: true,
-    });
+    if (!response.ok) {
+      return fail(
+        "We couldn't accept your details. Please check the form and try again.",
+        400,
+      );
+    }
 
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("API route error:", error);
-
-    return NextResponse.json(
-      {
-        message: "Internal server error",
-      },
-      {
-        status: 500,
-      },
+    console.error("Enquiry form proxy error:", error);
+    return fail(
+      "Something went wrong while submitting your enquiry. Please try again or call us directly.",
+      500,
     );
   }
 }

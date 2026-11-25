@@ -123,7 +123,7 @@ export function useBlueprintForm() {
       const payload = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error(payload?.message || "Unable to submit form.");
+        throw new Error(payload?.message || "Something went wrong. Please try again.");
       }
 
       setValues(INITIAL_VALUES);
@@ -134,7 +134,11 @@ export function useBlueprintForm() {
       window.location.assign(`${window.location.pathname.replace(/\/$/, "")}/thank-you`);
     } catch (error) {
       setStatusMessage(
-        error instanceof Error ? error.message : "Something went wrong.",
+        error instanceof TypeError
+          ? "Network error. Please check your internet connection and try again."
+          : error instanceof Error && error.message
+            ? error.message
+            : "Something went wrong. Please try again.",
       );
     } finally {
       setIsSubmitting(false);
